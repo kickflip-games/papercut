@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://i7ns4uexgyet"]
+
+[ext_resource type="Script" path="res://scenes/weapons/arrow.gd" id="1_17ppk"]
+[ext_resource type="Texture2D" uid="uid://dwcxa1jpooeme" path="res://assets/kenney_scribble_dungeons/PNG/Items/weapon_arrow.png" id="2_2m0cm"]
+[ext_resource type="PackedScene" uid="uid://ckrxk10li5n0j" path="res://scenes/units/hit_boxes/attack_box.tscn" id="3_fnl6c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ufrij"]
+size = Vector2(3.45462, 29.4142)
+
+[node name="arrow" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 9
+gravity_scale = 0.0
+script = ExtResource("1_17ppk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 3.14159
+texture = ExtResource("2_2m0cm")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="AttackBox" parent="." instance=ExtResource("3_fnl6c")]
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape2D" parent="AttackBox" index="0"]
+position = Vector2(-0.5, 0.5)
+scale = Vector2(2.02627, 1.46188)
+shape = SubResource("RectangleShape2D_ufrij")
+
+[editable path="AttackBox"]

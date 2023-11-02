@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://7vfc1fub28gb"]
+
+[ext_resource type="Script" path="res://scenes/pickups/pickup.gd" id="1_ysjr5"]
+[ext_resource type="Texture2D" uid="uid://bcf5h2rrlf17t" path="res://assets/kenney_scribble_dungeons/PNG/Characters/yellow_hand.png" id="2_l8wvu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kk1o1"]
+
+[node name="Pickup" type="Area2D"]
+collision_layer = 16
+script = ExtResource("1_ysjr5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_l8wvu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kk1o1")

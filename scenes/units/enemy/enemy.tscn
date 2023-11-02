@@ -1,0 +1,62 @@
+[gd_scene load_steps=11 format=3 uid="uid://bn4p41kvbnxw6"]
+
+[ext_resource type="Script" path="res://scenes/units/enemy/enemy.gd" id="1_7l8ff"]
+[ext_resource type="Texture2D" uid="uid://bbwo1i5jlt8af" path="res://assets/kenney_scribble_dungeons/PNG/Characters/green_character.png" id="2_lrpw2"]
+[ext_resource type="Texture2D" uid="uid://dsxwipmhlpee4" path="res://assets/kenney_scribble_dungeons/PNG/Characters/green_hand.png" id="3_1xnif"]
+[ext_resource type="Script" path="res://scenes/units/enemy/EnemySpriteController.gd" id="3_yyeqe"]
+[ext_resource type="PackedScene" uid="uid://boo7clbigp2xl" path="res://scenes/units/hit_boxes/take_damage_box.tscn" id="4_vv6f4"]
+[ext_resource type="PackedScene" uid="uid://ckrxk10li5n0j" path="res://scenes/units/hit_boxes/attack_box.tscn" id="5_jk6at"]
+[ext_resource type="PackedScene" uid="uid://c8r5mypnga5lt" path="res://scenes/units/health/health.tscn" id="6_0xygx"]
+[ext_resource type="PackedScene" uid="uid://cwsj4k5vxkqth" path="res://scenes/units/enemy/navigation.tscn" id="7_3oge1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i81hp"]
+radius = 25.02
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wmghk"]
+radius = 19.0
+
+[node name="enemy" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_7l8ff")
+health = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_lrpw2")
+script = ExtResource("3_yyeqe")
+
+[node name="FlashTimer" type="Timer" parent="Sprite2D"]
+
+[node name="Hand" type="Node2D" parent="Sprite2D"]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D/Hand"]
+position = Vector2(25, 18)
+texture = ExtResource("3_1xnif")
+
+[node name="TakeDamageBox" parent="." instance=ExtResource("4_vv6f4")]
+unique_name_in_owner = true
+collision_layer = 8
+collision_mask = 4
+boxType = 0
+
+[node name="CollisionShape2D" parent="TakeDamageBox" index="0"]
+shape = SubResource("CircleShape2D_i81hp")
+
+[node name="AttackBox" parent="." instance=ExtResource("5_jk6at")]
+collision_layer = 8
+collision_mask = 2
+damage = 10
+
+[node name="CollisionShape2D" parent="AttackBox" index="0"]
+shape = SubResource("CircleShape2D_wmghk")
+
+[node name="Health" parent="." instance=ExtResource("6_0xygx")]
+
+[node name="Navigation" parent="." instance=ExtResource("7_3oge1")]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[editable path="TakeDamageBox"]
+[editable path="AttackBox"]
+[editable path="Navigation"]

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b23gwaj5hwhcy"]
+
+[ext_resource type="Script" path="res://scenes/units/player/PickupBox.gd" id="1_dktk7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ex1lb"]
+radius = 98.0051
+
+[node name="PickupBox" type="Area2D"]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("1_dktk7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ex1lb")
+debug_color = Color(0.623529, 0.364706, 0.972549, 0.419608)
