@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://ci1fuqqqfqnt8"]
+
+[ext_resource type="PackedScene" uid="uid://btq7dgkmmegoe" path="res://scenes/pickups/xp_pickup.tscn" id="1_888nc"]
+[ext_resource type="PackedScene" uid="uid://wjuvo5gqethv" path="res://scenes/units/player/player.tscn" id="2_txlq1"]
+[ext_resource type="PackedScene" uid="uid://bn4p41kvbnxw6" path="res://scenes/units/enemy/enemy.tscn" id="3_vnpko"]
+
+[node name="test" type="Node2D"]
+
+[node name="XP_Pickup" parent="." instance=ExtResource("1_888nc")]
+position = Vector2(559, 274)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(802, 305)
+
+[node name="Player" parent="." instance=ExtResource("2_txlq1")]
+
+[node name="enemy" parent="." instance=ExtResource("3_vnpko")]
+position = Vector2(704, 68)
