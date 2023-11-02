@@ -6,5 +6,14 @@ Not the shitty printer service, but a Godot4 github gameoff 2023 game
 ![](https://kenney.nl/media/pages/assets/scribble-dungeons/a267209f30-1674932853/sample.png)
 
 
+### Dev vids
+
+|  |  | 
+|--|--|
+|1 | ![vid1] |
+
+
+[vid1]: https://youtu.be/kQgSFOyzfFg
+
 ### Assets used 
 - [Kenny Scribble Dungeon](https://kenney.nl/assets/scribble-dungeons)
