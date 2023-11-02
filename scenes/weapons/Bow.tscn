@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://drqeygsg8j7nn"]
+
+[ext_resource type="Script" path="res://scenes/weapons/Bow.gd" id="1_njpy4"]
+[ext_resource type="Texture2D" uid="uid://ccbqw12fmmbw0" path="res://assets/kenney_scribble_dungeons/PNG/Items/weapon_bow_arrow.png" id="2_eicd7"]
+
+[node name="Bow" type="Node2D"]
+position = Vector2(82, 78)
+script = ExtResource("1_njpy4")
+cooldownTime = 0.05
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 3.14159
+texture = ExtResource("2_eicd7")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, 19)
+
+[node name="CooldownTimer" type="Timer" parent="."]
+wait_time = 0.05

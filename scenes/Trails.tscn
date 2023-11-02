@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0g00ecnpuo2h"]
+
+[ext_resource type="Script" path="res://scenes/trails.gd" id="1_5acks"]
+
+[sub_resource type="Curve" id="Curve_8ngae"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.896915, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_666gm"]
+offsets = PackedFloat32Array(0, 0.576364, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 0.160784, 1, 1, 1, 1, 0.286275)
+
+[node name="Trails" type="Line2D"]
+show_behind_parent = true
+light_mask = 32
+visibility_layer = 32
+width_curve = SubResource("Curve_8ngae")
+default_color = Color(1, 1, 0, 1)
+gradient = SubResource("Gradient_666gm")
+script = ExtResource("1_5acks")
+MAX_LENGTH = 5
