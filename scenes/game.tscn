@@ -1,0 +1,211 @@
+[gd_scene load_steps=19 format=3 uid="uid://7441le0sa3s"]
+
+[ext_resource type="Texture2D" uid="uid://bxngmamkuppd3" path="res://assets/kenney_scribble_dungeons/PNG/tile.png" id="1_fiwyp"]
+[ext_resource type="PackedScene" uid="uid://wjuvo5gqethv" path="res://scenes/units/player/player.tscn" id="2_0ekfu"]
+[ext_resource type="Texture2D" uid="uid://dap5jtmoyn26d" path="res://assets/kenney_scribble_dungeons/PNG/tiles.png" id="2_b6wcv"]
+[ext_resource type="PackedScene" uid="uid://cnd77vsekt02" path="res://scenes/units/enemy/enemy_spawner.tscn" id="4_grg3k"]
+[ext_resource type="PackedScene" uid="uid://bn4p41kvbnxw6" path="res://scenes/units/enemy/enemy.tscn" id="5_qhmm3"]
+[ext_resource type="Script" path="res://scenes/units/enemy/spawn_info.gd" id="6_5hij4"]
+[ext_resource type="LabelSettings" uid="uid://di2inmld2sx5d" path="res://scenes/fonts/title_font.tres" id="8_cd3a4"]
+[ext_resource type="PackedScene" uid="uid://brf2rg0tybjeg" path="res://scenes/debug_tools/debug_txt.tscn" id="8_cwps4"]
+[ext_resource type="PackedScene" uid="uid://dbk4af5rnt1x8" path="res://addons/debug_menu/debug_menu.tscn" id="9_jt2aa"]
+[ext_resource type="Script" path="res://scenes/upgrades/LevelUpUi.gd" id="10_d50x8"]
+[ext_resource type="Script" path="res://scenes/game_over_panel.gd" id="11_8nv5d"]
+[ext_resource type="PackedScene" uid="uid://dbstyykq2hos4" path="res://scenes/upgrades/upgrade.tscn" id="11_thqym"]
+
+[sub_resource type="Resource" id="Resource_o2vqe"]
+script = ExtResource("6_5hij4")
+time_start = 0
+time_end = 120
+enemy = ExtResource("5_qhmm3")
+enemy_num = 1
+enemy_spawn_delay = 2
+
+[sub_resource type="Resource" id="Resource_222b3"]
+script = ExtResource("6_5hij4")
+time_start = 0
+time_end = 20000
+enemy = ExtResource("5_qhmm3")
+enemy_num = 15
+enemy_spawn_delay = 15
+
+[sub_resource type="Resource" id="Resource_upml2"]
+script = ExtResource("6_5hij4")
+time_start = 120
+time_end = 2000
+enemy = ExtResource("5_qhmm3")
+enemy_num = 50
+enemy_spawn_delay = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_ga0kg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_b3uk7"]
+font_size = 63
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 14
+
+[sub_resource type="LabelSettings" id="LabelSettings_oscfq"]
+font_size = 30
+
+[node name="world" type="Node2D"]
+
+[node name="Environment" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment"]
+scale = Vector2(421.868, 313.577)
+texture = ExtResource("1_fiwyp")
+
+[node name="Background" type="Sprite2D" parent="Environment"]
+self_modulate = Color(1, 1, 1, 0.184314)
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(380, 46.5004)
+scale = Vector2(2.74445, 2.94829)
+texture = ExtResource("2_b6wcv")
+region_enabled = true
+region_rect = Rect2(-2537.24, -2280.98, 5048.12, 3481.33)
+
+[node name="Player" parent="." instance=ExtResource("2_0ekfu")]
+position = Vector2(288, 148)
+
+[node name="EnemySpawner" parent="." instance=ExtResource("4_grg3k")]
+spawns = Array[ExtResource("6_5hij4")]([SubResource("Resource_o2vqe"), SubResource("Resource_222b3"), SubResource("Resource_upml2")])
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="GUI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="DebugPanel" type="Panel" parent="GUI/Control" groups=["debug_ui"]]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -437.0
+offset_bottom = 681.0
+grow_horizontal = 0
+mouse_filter = 2
+
+[node name="TitleLabel" type="Label" parent="GUI/Control/DebugPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 75.0
+grow_horizontal = 2
+text = "DEBUG INFO   "
+label_settings = ExtResource("8_cd3a4")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="DebugTxt" parent="GUI/Control/DebugPanel" instance=ExtResource("8_cwps4")]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+offset_left = 31.0
+offset_top = -625.0
+offset_right = -16.0
+offset_bottom = -493.0
+grow_vertical = 0
+text = "adsasda"
+label_settings = SubResource("LabelSettings_ga0kg")
+horizontal_alignment = 2
+
+[node name="DebugMenu" parent="GUI/Control/DebugPanel" instance=ExtResource("9_jt2aa")]
+layout_mode = 1
+offset_left = -404.0
+offset_top = 123.0
+offset_right = -4.0
+offset_bottom = 523.0
+
+[node name="LevelUpUi" type="Panel" parent="GUI/Control"]
+unique_name_in_owner = true
+process_mode = 2
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -317.0
+offset_top = -220.0
+offset_right = 317.0
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+mouse_default_cursor_shape = 2
+script = ExtResource("10_d50x8")
+
+[node name="labelLvlUp" type="Label" parent="GUI/Control/LevelUpUi"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 143.0
+grow_horizontal = 2
+text = "LEVEL UP!"
+label_settings = ExtResource("8_cd3a4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="upgrade" parent="GUI/Control/LevelUpUi" instance=ExtResource("11_thqym")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 277.0
+offset_top = 166.0
+offset_right = 362.0
+offset_bottom = 197.0
+grow_horizontal = 1
+grow_vertical = 1
+mouse_force_pass_scroll_events = false
+
+[node name="GameOverPanel" type="Panel" parent="GUI/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_8nv5d")
+
+[node name="game_over_txt" type="Label" parent="GUI/Control/GameOverPanel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -136.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_b3uk7")
+horizontal_alignment = 1
+
+[node name="game_over_txt2" type="Label" parent="GUI/Control/GameOverPanel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 58.0
+offset_bottom = 207.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press R to restart"
+label_settings = SubResource("LabelSettings_oscfq")
+horizontal_alignment = 1
+
+[node name="enemy" parent="." instance=ExtResource("5_qhmm3")]
+health = 5

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://boo7clbigp2xl"]
+
+[ext_resource type="Script" path="res://scenes/units/hit_boxes/take_damage_box.gd" id="1_jkykb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4h0hx"]
+
+[node name="TakeDamageBox" type="Area2D"]
+script = ExtResource("1_jkykb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4h0hx")
+debug_color = Color(0.0196078, 0.584314, 0.411765, 0.478431)
+
+[node name="DisableTimer" type="Timer" parent="."]
+one_shot = true
