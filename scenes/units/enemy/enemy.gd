@@ -26,7 +26,7 @@ var knockback:Vector2 = Vector2.ZERO
 
 
 var xp_drop:PackedScene = preload("res://scenes/pickups/xp_pickup.tscn")
-
+var dmg_popup = preload("res://scenes/effects/popup/damage_pop_up.tscn")
 
 # Signal to remove from manager 
 signal remove_from_array(enemy:Enemy)
@@ -44,6 +44,10 @@ func _on_take_damage(dmg, dir):
 	var player_dir = Player.global_position - global_position
 	player_dir = player_dir.normalized()
 	knockback = player_dir * -100
+	var generated_popup:DamagePopUp = dmg_popup.instantiate()
+	get_tree().get_root().call_deferred("add_child", generated_popup)
+	generated_popup.call_deferred("set_values_and_animate", str(dmg), self.global_position, Color.BLACK)
+	
 	
 
 func _hide_sprite():

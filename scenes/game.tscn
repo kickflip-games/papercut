@@ -10,8 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://brf2rg0tybjeg" path="res://scenes/debug_tools/debug_txt.tscn" id="8_cwps4"]
 [ext_resource type="PackedScene" uid="uid://dbk4af5rnt1x8" path="res://addons/debug_menu/debug_menu.tscn" id="9_jt2aa"]
 [ext_resource type="Script" path="res://scenes/upgrades/LevelUpUi.gd" id="10_d50x8"]
-[ext_resource type="Script" path="res://scenes/game_over_panel.gd" id="11_8nv5d"]
 [ext_resource type="PackedScene" uid="uid://dbstyykq2hos4" path="res://scenes/upgrades/upgrade.tscn" id="11_thqym"]
+[ext_resource type="Script" path="res://scenes/game_flow/game_over_panel.gd" id="12_g6itt"]
 
 [sub_resource type="Resource" id="Resource_o2vqe"]
 script = ExtResource("6_5hij4")
@@ -177,7 +177,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("11_8nv5d")
+script = ExtResource("12_g6itt")
 
 [node name="game_over_txt" type="Label" parent="GUI/Control/GameOverPanel"]
 layout_mode = 1
