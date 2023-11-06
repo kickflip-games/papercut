@@ -4,8 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://ccbqw12fmmbw0" path="res://assets/kenney_scribble_dungeons/PNG/Items/weapon_bow_arrow.png" id="2_eicd7"]
 
 [node name="Bow" type="Area2D"]
-position = Vector2(82, 78)
+position = Vector2(203, 101)
 script = ExtResource("1_njpy4")
+shot_arc_lim = 5.358
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 3.14159

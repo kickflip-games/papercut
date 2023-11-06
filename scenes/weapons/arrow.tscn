@@ -13,16 +13,17 @@ collision_mask = 9
 script = ExtResource("1_17ppk")
 
 [node name="AttackBox" parent="." instance=ExtResource("2_8ox7y")]
+position = Vector2(0, 23)
+rotation = 1.5708
 collision_layer = 4
 collision_mask = 8
 
 [node name="CollisionShape2D" parent="AttackBox" index="0"]
-position = Vector2(0, -22.5)
+position = Vector2(-23, 1.90735e-06)
 shape = SubResource("RectangleShape2D_yx5qc")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-position = Vector2(0, -23)
-rotation = 3.14159
+rotation = 1.5708
 texture = ExtResource("3_xd3do")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
