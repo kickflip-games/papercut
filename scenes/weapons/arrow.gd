@@ -1,9 +1,15 @@
 extends Weapon
+class_name Arrow
 
 
-var direction_vector:Vector2
 
 
+var direction_vector:Vector2:
+	set(d):
+		direction_vector = d
+		var point_at:Vector2 = position + direction_vector*speed*0.1
+		self.look_at(point_at + Vector2.RIGHT)
+		
 
 func _on_death():
 	cleanup()
@@ -16,9 +22,8 @@ func _on_attack_collision(body:Node2D):
 	cleanup()
 	
 
-
-
 func _physics_process(delta):
 	position += direction_vector*speed*delta
 
-
+func _draw():
+	draw_line(Vector2.ZERO, direction_vector, Color.AQUAMARINE)

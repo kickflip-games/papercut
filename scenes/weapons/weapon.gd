@@ -27,6 +27,7 @@ var hp_manager_present:bool
 ## CLEANUP SIGNAL
 signal remove_from_array(object)
 
+
 func _ready():
 	set_init_references()
 	print("Setup ", get_path(), " : ", cooldown_timer)
