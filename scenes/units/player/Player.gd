@@ -9,11 +9,15 @@ class_name Player
 
 @onready var health_manager:Health = $Health
 @onready var detection_area:DetectionArea = $DetectionArea
+@onready var take_damage_box:TakeDamageBox = %TakeDamageBox
+@onready var screen_shake:ScreenShake = $ScreenShake
+
 
 var is_alive:bool = true
 
 func _ready():
 	health_manager.Die.connect(_on_death)
+	take_damage_box.take_damage.connect(_on_take_damage)
 
 
 func get_inputs():
@@ -38,3 +42,5 @@ func _on_death():
 	print("DEAD")
 
 
+func _on_take_damage(dmg, dir):
+	screen_shake.apply_noise_shake()

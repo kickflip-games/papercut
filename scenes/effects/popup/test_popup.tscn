@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://drxwshc4jud0t"]
+
+[ext_resource type="Script" path="res://scenes/effects/popup/test_popup.gd" id="1_sem0o"]
+
+[node name="test_popup" type="Node2D"]
+script = ExtResource("1_sem0o")

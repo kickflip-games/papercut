@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://wctpoo7t5mn6"]
+
+[ext_resource type="PackedScene" uid="uid://drqeygsg8j7nn" path="res://scenes/weapons/Bow.tscn" id="1_cxp4e"]
+[ext_resource type="PackedScene" uid="uid://bingpvpe5cf7c" path="res://scenes/weapons/Deathmachine.tscn" id="2_o8al3"]
+[ext_resource type="PackedScene" uid="uid://cnmms0uj76xuc" path="res://scenes/weapons/Sword.tscn" id="3_8hdqj"]
+
+[node name="test" type="Node2D"]
+
+[node name="Bow" parent="." instance=ExtResource("1_cxp4e")]
+position = Vector2(551, 377)
+
+[node name="Deathmachine" parent="." instance=ExtResource("2_o8al3")]
+position = Vector2(627, 382)
+
+[node name="Sword" parent="." instance=ExtResource("3_8hdqj")]
+position = Vector2(736, 403)
