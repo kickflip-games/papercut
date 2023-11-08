@@ -7,13 +7,9 @@ var arrow:PackedScene = preload("res://scenes/weapons/arrow.tscn")
 
 @export_range(0.001,50) var shot_arc_lim:float
 
-func _init():
-	cooldown = 0.01
-
 
 func _get_rand_angle():
 	var angle = randf_range(-shot_arc_lim, shot_arc_lim)
-	print("angle: ", angle)
 	return deg_to_rad(angle)
 
 func _get_shot_dir():
@@ -32,7 +28,7 @@ func shoot():
 	
 	arrow_instance.global_transform = shoot_point.global_transform
 	get_tree().get_root().call_deferred("add_child", arrow_instance)
-	arrow_instance.speed = 500
+	arrow_instance.speed = speed
 	arrow_instance.direction_vector = shot_dir
 	cooldown_timer.start(cooldown)
 	enable_attack(false)

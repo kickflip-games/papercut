@@ -5,7 +5,9 @@ var play_music = true
 var fullscreen = false
 var version = null
 var show_debug_ui = false
-const SCENE_MAIN_MENU = "res://main_menu/main_menu.tscn"
+
+const SCENE_MAIN_MENU = "res://scenes/game_flow/main_menu/main_menu.tscn"
+const SCENE_GAME = "res://scenes/game_flow/gameplay/game.tscn"
 const EXPORT_CONFIG_FILE := "res://export.cfg"
 const EXPORT_CONFIG_METADATA_SECTION := "metadata"
 const SETTINGS_FILE := "user://settings.cfg"

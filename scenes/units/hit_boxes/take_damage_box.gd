@@ -41,7 +41,6 @@ func _on_disable_timer_timeout():
 	can_take_damage = true
 
 
-
 func handle_hit_once_attacktype(attackbox:AttackBox):
 	if already_hurt_by.has(attackbox)==false:
 		already_hurt_by.append(attackbox)

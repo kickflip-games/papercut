@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://p8orp54ynall"]
+
+[ext_resource type="Script" path="res://addons/trail_2d/trail_2d.gd" id="1_6cu2w"]
+
+[sub_resource type="Curve" id="Curve_ni00x"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0766667, 1), 0.0, -1.08303, 0, 1, Vector2(1, 0), -1.08303, 0.0, 1, 0]
+point_count = 3
+
+[node name="Marker2D" type="Marker2D"]
+
+[node name="Trail2D" type="Line2D" parent="."]
+unique_name_in_owner = true
+width_curve = SubResource("Curve_ni00x")
+script = ExtResource("1_6cu2w")

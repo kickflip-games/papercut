@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://wjuvo5gqethv"]
+[gd_scene load_steps=22 format=3 uid="uid://wjuvo5gqethv"]
 
 [ext_resource type="Script" path="res://scenes/units/player/Player.gd" id="1_ubmpe"]
 [ext_resource type="Texture2D" uid="uid://dia0dwa0lvkj7" path="res://assets/kenney_scribble_dungeons/PNG/Characters/yellow_character.png" id="2_nuf6p"]
@@ -11,10 +11,15 @@
 [ext_resource type="PackedScene" uid="uid://boo7clbigp2xl" path="res://scenes/units/hit_boxes/take_damage_box.tscn" id="7_1bndr"]
 [ext_resource type="Script" path="res://scenes/units/player/HealthBar.gd" id="7_4x2fm"]
 [ext_resource type="Texture2D" uid="uid://d1cwqsd4qjkl7" path="res://assets/square.png" id="7_a5me4"]
+[ext_resource type="Script" path="res://scenes/units/player/inventory.gd" id="7_gupt8"]
 [ext_resource type="PackedScene" uid="uid://c8r5mypnga5lt" path="res://scenes/units/health/health.tscn" id="8_vn3vr"]
 [ext_resource type="LabelSettings" uid="uid://chwgtf1er15no" path="res://scenes/units/player/player_ui_font.tres" id="9_o38mr"]
 [ext_resource type="Script" path="res://scenes/units/player/xpBar.gd" id="9_x27up"]
+[ext_resource type="PackedScene" uid="uid://bingpvpe5cf7c" path="res://scenes/weapons/Deathmachine.tscn" id="10_kj83r"]
+[ext_resource type="PackedScene" uid="uid://cnmms0uj76xuc" path="res://scenes/weapons/Sword.tscn" id="11_o7kf6"]
 [ext_resource type="Script" path="res://scenes/units/player/xp_manager.gd" id="12_aa1vf"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/joystick/virtual_joystick.tscn" id="17_ykow5"]
+[ext_resource type="Script" path="res://scenes/effects/screenshake.gd" id="19_3n38t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uo1at"]
 radius = 26.0768
@@ -50,19 +55,27 @@ debug_color = Color(0.623529, 0.364706, 0.972549, 0.145098)
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_nuf6p")
 
-[node name="Hand" type="Node2D" parent="."]
+[node name="Inventory" type="Node2D" parent="."]
 rotation = -1.55509
+script = ExtResource("7_gupt8")
 
-[node name="Sprite2D" type="Sprite2D" parent="Hand"]
+[node name="HandSprite" type="Sprite2D" parent="Inventory"]
 position = Vector2(21, 21)
 texture = ExtResource("3_ss540")
 
-[node name="Bow" parent="Hand" instance=ExtResource("4_ofbkf")]
+[node name="Bow" parent="Inventory" instance=ExtResource("4_ofbkf")]
 position = Vector2(21, 41)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.75, 0.75)
-position_smoothing_enabled = true
+[node name="Deathmachine" parent="Inventory" instance=ExtResource("10_kj83r")]
+position = Vector2(21.83, 52.6636)
+
+[node name="Sword" parent="Inventory" instance=ExtResource("11_o7kf6")]
+
+[node name="Sprite2D" parent="Inventory/Sword" index="0"]
+position = Vector2(-0.926852, -58.9927)
+
+[node name="AttackBox" parent="Inventory/Sword" index="2"]
+position = Vector2(0.0887343, -58.0085)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 scale = Vector2(1, 0.929775)
@@ -128,6 +141,30 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
+[node name="Joysticks" type="Control" parent="CanvasLayer/Control"]
+modulate = Color(0.509804, 0.509804, 0.509804, 1)
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Virtual joystick left" parent="CanvasLayer/Control/Joysticks" instance=ExtResource("17_ykow5")]
+layout_mode = 1
+offset_top = 372.0
+offset_bottom = 672.0
+
+[node name="Virtual joystick right" parent="CanvasLayer/Control/Joysticks" instance=ExtResource("17_ykow5")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 940.0
+offset_top = 380.0
+offset_right = 1240.0
+offset_bottom = 680.0
+grow_horizontal = 0
+joystick_mode = 1
+use_input_actions = false
+
 [node name="Health" parent="." instance=ExtResource("8_vn3vr")]
 unique_name_in_owner = true
 
@@ -135,6 +172,17 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 script = ExtResource("12_aa1vf")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+unique_name_in_owner = true
+zoom = Vector2(0.75, 0.75)
+position_smoothing_enabled = true
+
+[node name="ScreenShake" type="Node2D" parent="."]
+script = ExtResource("19_3n38t")
+
 [editable path="TakeDamageBox"]
 [editable path="PickupColliders/PickupBox"]
 [editable path="PickupColliders/XpMagnetBox"]
+[editable path="Inventory/Sword"]
+[editable path="Inventory/Sword/AttackBox"]
+[editable path="Inventory/Sword/trail_fx"]

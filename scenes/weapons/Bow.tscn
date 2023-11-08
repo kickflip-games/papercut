@@ -6,7 +6,7 @@
 [node name="Bow" type="Area2D"]
 position = Vector2(203, 101)
 script = ExtResource("1_njpy4")
-shot_arc_lim = 5.358
+shot_arc_lim = 0.001
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 3.14159
