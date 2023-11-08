@@ -1,29 +1,29 @@
-extends RigidBody2D
+extends Weapon
+class_name Arrow
 
 
-@onready var screen_noitifyer = $VisibleOnScreenNotifier2D
-@onready var attackBox = $AttackBox 
 
 
-func _ready():
-	screen_noitifyer.screen_exited.connect(_on_visible_on_screen_notifier_2d_screen_exited)
-	attackBox.area_entered.connect(_on_area_2d_body_entered)
-	
+var direction_vector:Vector2:
+	set(d):
+		direction_vector = d
+		var point_at:Vector2 = position + direction_vector*speed*0.1
+		self.look_at(point_at + Vector2.RIGHT)
+		
 
-func _on_visible_on_screen_notifier_2d_screen_exited():
-	queue_free()
+func _on_death():
+	cleanup()
 
-
-func _on_area_2d_body_entered(body):
-	attackBox.disconnect("area_entered", _on_area_2d_body_entered)
+func _on_attack_collision(body:Node2D):
+	attack_box.disconnect("area_entered", _on_attack_collision)
 #	call_deferred("attach_to_new_body", body)
 	
 #	await get_tree().create_timer(5).timeout
-	queue_free()
+	cleanup()
 	
-	
-#func attach_to_new_body(body):	
-#	print("arrow hit " + body.name)
-#	attackBox.set("disabled", true)
-#	sleeping = true
-#	reparent(body.get_parent(), true)
+
+func _physics_process(delta):
+	position += direction_vector*speed*delta
+
+func _draw():
+	draw_line(Vector2.ZERO, direction_vector, Color.AQUAMARINE)

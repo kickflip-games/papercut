@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/game_flow/main_menu/version_label.gd" id="1_w35gl"]
 [ext_resource type="Script" path="res://scenes/game_flow/main_menu/menu_options.gd" id="2_cr1xg"]
-[ext_resource type="PackedScene" uid="uid://bdnyglk1i1cxl" path="res://scenes/game_flow/gameplay/gameplay.tscn" id="3_au2c1"]
+[ext_resource type="PackedScene" uid="uid://7441le0sa3s" path="res://scenes/game_flow/gameplay/game.tscn" id="3_51t0y"]
 [ext_resource type="PackedScene" uid="uid://dpicmplffpula" path="res://scenes/settings/settings.tscn" id="4_7h0sn"]
 [ext_resource type="PackedScene" uid="uid://cee5dna3u27jf" path="res://assets/select_sfx.tscn" id="5_gtmi4"]
 
@@ -33,7 +33,7 @@ offset_right = 65.5
 offset_bottom = 135.0
 grow_horizontal = 2
 theme_type_variation = &"HeaderLarge"
-text = "YOUR GAME"
+text = "PAPERCUT"
 horizontal_alignment = 1
 
 [node name="Credit" type="Label" parent="."]
@@ -46,7 +46,7 @@ offset_top = 156.0
 offset_right = 59.5
 offset_bottom = 182.0
 grow_horizontal = 2
-text = "A game by YOU"
+text = "Github Gameoff 2023 game by Aryman, Sid, Avi"
 
 [node name="Controls" type="Label" parent="."]
 layout_mode = 0
@@ -103,7 +103,7 @@ grow_vertical = 2
 shortcut_context = NodePath("Start")
 alignment = 1
 script = ExtResource("2_cr1xg")
-gameplay_scene = ExtResource("3_au2c1")
+gameplay_scene = ExtResource("3_51t0y")
 settings_scene = ExtResource("4_7h0sn")
 
 [node name="Start" type="Button" parent="MenuOptions"]

@@ -21,3 +21,11 @@ enum NaviationType  {
 	BOID,
 	LINE,
 }
+
+
+enum WeaponType {
+	NONE,
+	BOW,
+	DEATHMACHINE,
+	SWORD
+}

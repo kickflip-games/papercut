@@ -12,7 +12,7 @@ config_version=5
 
 config/name="papercut"
 config/description="[Add your description here!]"
-run/main_scene="res://scenes/game.tscn"
+run/main_scene="res://scenes/game_flow/gameplay/game.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 run/max_fps=1000
 config/icon="res://assets/icon.svg"
@@ -33,6 +33,10 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 window/vsync/vsync_mode=0
+
+[editor]
+
+movie_writer/movie_file="/Users/avaj0001/Documents/personal/godot_projects/movies/gameplay.mp4.avi"
 
 [input]
 
@@ -135,6 +139,21 @@ cycle_debug_menu={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":48,"key_label":0,"unicode":48,"echo":false,"script":null)
 ]
 }
+cycle_weapon_forward={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":46,"key_label":0,"unicode":46,"echo":false,"script":null)
+]
+}
+cycle_weapon_backwards={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":44,"key_label":0,"unicode":44,"echo":false,"script":null)
+]
+}
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+pointing/emulate_mouse_from_touch=false
 
 [layer_names]
 
