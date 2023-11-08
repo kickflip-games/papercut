@@ -1,4 +1,11 @@
 extends Control
+class_name PauseMenu
+
+var sfx
+
+
+func _ready():
+	sfx = get_node_or_null("../SelectSfx")
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_released("pause"):
@@ -9,6 +16,7 @@ func _resume() -> void:
 	get_parent().get_tree().paused = false
 
 func pause() -> void:
-	Sound.play_sfx($"../SelectSfx")
+	if sfx:
+		Sound.play_sfx(sfx)
 	show()
 	$PauseOptions.focus()

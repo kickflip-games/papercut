@@ -2,16 +2,19 @@ extends Area2D
 class_name Weapon
 # will either shoot projectiles or have a damage area
 
+
+
 ## ATTACK STATS
 var level = 1
-var knockback_amount:float = 100
-var attack_size:float = 1.0
-var cooldown:float = 0.3
-var hp:float = 1 # HP for projectiles 
-var speed:float = 500
-var damage:float = 1
-var attack_enabled = true
-var lifetime:float = -1 # < 0 means doesnt die due to 'old age'
+@export var weapon_type:Constants.WeaponType
+@export var knockback_amount:float = 100
+@export var attack_size:float = 1.0
+@export var cooldown:float = 0.3
+@export var hp:float = 1 # HP for projectiles 
+@export var speed:float = 500
+@export var damage:float = 1
+@export var attack_enabled = true
+@export var lifetime:float = -1 # < 0 means doesnt die due to 'old age'
 
 ## MANAGERS
 var cooldown_timer:Timer
@@ -30,11 +33,9 @@ signal remove_from_array(object)
 
 func _ready():
 	set_init_references()
-	print("Setup ", get_path(), " : ", cooldown_timer)
 
 
 func set_init_references():
-	print("set_init_refs")
 	# A bit hacky but will make inheritance 
 	# a bit cleaner and keep 
 	var root = String(get_path())
@@ -49,6 +50,7 @@ func set_init_references():
 	attack_box = get_node_or_null(root + "/AttackBox")
 	if attack_box:
 		attack_box_present = true
+		attack_box.damage = damage
 		attack_box.area_entered.connect(_on_attack_collision)
 
 	screen_notifier = get_node_or_null(root + "/VisibleOnScreenNotifier2D")
@@ -66,7 +68,6 @@ func set_init_references():
 		lifetime_timer.wait_time = lifetime
 
 func cleanup():
-	print("Cleaning ", self.name)
 	emit_signal("remove_from_array",self)
 	queue_free()
 
@@ -76,7 +77,7 @@ func _on_screen_exited():
 func _on_death():
 	push_error("ON_DEATH NOT IMPLEMENTED")
 
-func _on_attack_collision(sbody:Node2D):
+func _on_attack_collision(body:Node2D):
 	push_error("ON_ATTACK NOT IMPLEMENTED")
 
 
