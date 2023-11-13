@@ -5,6 +5,7 @@ var play_music = true
 var fullscreen = false
 var version = null
 var show_debug_ui = false
+var DEBUG_MODE:bool = false
 
 const SCENE_MAIN_MENU = "res://scenes/game_flow/main_menu/main_menu.tscn"
 const SCENE_GAME = "res://scenes/game_flow/gameplay/game.tscn"
@@ -83,3 +84,6 @@ func _input(event: InputEvent) -> void:
 			get_tree().call_group("debug_ui", "show")
 		else:
 			get_tree().call_group("debug_ui", "hide")
+	if event.is_action_pressed("DEBUG"):
+		DEBUG_MODE = !DEBUG_MODE
+		print("DEBUG_MODE: ", DEBUG_MODE)

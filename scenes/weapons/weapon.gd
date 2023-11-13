@@ -22,8 +22,11 @@ var lifetime_timer:Timer
 var hp_manager:Health
 var attack_box:AttackBox
 var screen_notifier:VisibleOnScreenNotifier2D
+var detection_area:DetectionArea
+var detection_area_present:bool
 var attack_box_present:bool
 var hp_manager_present:bool
+
 
 
 
@@ -33,14 +36,22 @@ signal remove_from_array(object)
 
 func _ready():
 	set_init_references()
+	set_level(1)
 
+
+func _input(event):
+	if event.is_action_pressed("click") && Global.DEBUG_MODE:
+		increment_lvl()
 
 func set_init_references():
 	# A bit hacky but will make inheritance 
 	# a bit cleaner and keep 
 	var root = String(get_path())
 	
-
+	detection_area =  get_node_or_null("../../DetectionArea")
+	if detection_area:
+		detection_area_present = true
+	
 	hp_manager = get_node_or_null(root + "/HpManager")
 	if hp_manager:
 		hp_manager_present = true
@@ -66,7 +77,16 @@ func set_init_references():
 	if lifetime_timer and lifetime > 0:
 		lifetime_timer.timeout.connect(cleanup)
 		lifetime_timer.wait_time = lifetime
-
+		
+		
+func set_vars():
+	if hp_manager_present:
+		hp_manager.set_health(hp)
+	if cooldown_timer:
+		cooldown_timer.wait_time = cooldown
+	
+		
+	
 func cleanup():
 	emit_signal("remove_from_array",self)
 	queue_free()
@@ -93,18 +113,18 @@ func enable_attack(enable:bool=true):
 
 
 
-func set_vars(lvl:int):
+func set_level(lvl:int):
 	# based on lvl, 
 	# update cooldown timer
 	# update dmg
 	# update size 
 	
-	if hp_manager_present:
-		hp_manager.set_health(hp)
+	level = clamp(lvl, 1, 5)
+	set_vars()	
 	
 	
-	pass
-	
+func increment_lvl():
+	set_level(level + 1)
 	
 func _cooldown_complete():
 	enable_attack(true)

@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://dmas3ws6ej7uk"]
+
+[ext_resource type="Script" path="res://scenes/weapons/HomingAxe.gd" id="1_arphm"]
+[ext_resource type="Texture2D" uid="uid://c7ucs7jagh42b" path="res://assets/kenney_scribble_dungeons/PNG/Items/weapon_axe_large.png" id="2_vlx0q"]
+[ext_resource type="Texture2D" uid="uid://bcf5h2rrlf17t" path="res://assets/kenney_scribble_dungeons/PNG/Characters/yellow_hand.png" id="3_d5kas"]
+[ext_resource type="PackedScene" uid="uid://ckrxk10li5n0j" path="res://scenes/units/hit_boxes/attack_box.tscn" id="4_fvwkx"]
+[ext_resource type="PackedScene" uid="uid://p8orp54ynall" path="res://addons/trail_2d/trail_fx.tscn" id="5_2ogc5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jj7ck"]
+size = Vector2(39, 34)
+
+[sub_resource type="Gradient" id="Gradient_mggk4"]
+offsets = PackedFloat32Array(0, 0.394387, 0.649926, 1)
+colors = PackedColorArray(0, 0.716667, 1, 1, 0.905882, 0.956863, 1, 0.360784, 0.945098, 0.976471, 1, 0, 1, 1, 1, 0)
+
+[node name="Axe" type="Area2D"]
+script = ExtResource("1_arphm")
+weapon_type = null
+knockback_amount = null
+attack_size = null
+cooldown = null
+hp = null
+speed = null
+damage = null
+attack_enabled = null
+lifetime = null
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, -45)
+texture = ExtResource("2_vlx0q")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
+visible = false
+position = Vector2(6, 24)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("3_d5kas")
+
+[node name="CooldownTimer" type="Timer" parent="."]
+
+[node name="AttackBox" parent="." instance=ExtResource("4_fvwkx")]
+position = Vector2(0, -47)
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape2D" parent="AttackBox" index="0"]
+position = Vector2(-0.5, -7)
+shape = SubResource("RectangleShape2D_jj7ck")
+
+[node name="trail_fx" parent="." instance=ExtResource("5_2ogc5")]
+position = Vector2(0, -27)
+
+[node name="Trail2D" parent="trail_fx" index="0"]
+modulate = Color(1, 1, 1, 0.560784)
+show_behind_parent = true
+light_mask = 32
+visibility_layer = 32
+position = Vector2(-1, 4)
+gradient = SubResource("Gradient_mggk4")
+max_length = 15
+
+[editable path="AttackBox"]
+[editable path="trail_fx"]

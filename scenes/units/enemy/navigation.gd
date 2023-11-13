@@ -9,10 +9,10 @@ class_name Navigation
 @onready var view_collider:CollisionShape2D = $ViewCollider
 
 
-@export var follow_force: = 0.3
-@export var cohesion_force: = 0.001
-@export var algin_force: = 0.001
-@export var avoid_force: = 0.3
+@export var follow_magnitude: = 0.3
+@export var cohesion_magnitude: = 0.001
+@export var algin_magnitude: = 0.001
+@export var avoid_magnitude: = 0.3
 @export var avoid_distance: = 45.0
 @export var kockback_force = 0.5
 
@@ -63,7 +63,7 @@ func get_target_velocity(current_v:Vector2, max_speed:float):
 	
 
 func _get_force_to_target():
-	return mypos.direction_to(target_pos) * _max_speed * follow_force
+	return mypos.direction_to(target_pos) * _max_speed * follow_magnitude
 	
 
 func _new_vel(current_v:Vector2)->Vector2:
@@ -101,8 +101,8 @@ func _get_flock_vectors(flock: Array):
 		center_vector = center_dir * center_speed
 
 	return [
-		center_vector * cohesion_force, 
-		align_vector * algin_force,
-		avoid_vector * avoid_force
+		center_vector * cohesion_magnitude, 
+		align_vector * algin_magnitude,
+		avoid_vector * avoid_magnitude
 		]
 

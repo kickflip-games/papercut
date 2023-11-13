@@ -2,7 +2,7 @@ class_name VirtualJoystick
 
 extends Control
 
-## A simple virtual joystick for touchscreens, with useful options.
+## A simple viawrtual joystick for touchscreens, with useful options.
 ## Github: https://github.com/MarcoFazioRandom/Virtual-Joystick-Godot
 
 # EXPORTED VARIABLE
@@ -59,6 +59,10 @@ var _touch_index : int = -1
 
 @onready var _base_default_position : Vector2 = _base.position
 @onready var _tip_default_position : Vector2 = _tip.position
+@onready var _center :Vector2 = Vector2(
+	size.x/2+ get_global_transform_with_canvas().get_scale().x,
+	size.y/2 + get_global_transform_with_canvas().get_scale().y
+)
 
 @onready var _default_color : Color = _tip.modulate
 
@@ -67,8 +71,49 @@ var _touch_index : int = -1
 func _ready() -> void:
 	if not DisplayServer.is_touchscreen_available() and visibility_mode == Visibility_mode.TOUCHSCREEN_ONLY:
 		hide()
+		
+#func _draw():
+#	draw_circle(_center, 20, Color.AQUA)
+#	var r:Rect2 = Rect2(position.x, position.y, size.x, size.y)
+#	draw_rect(r, Color.AQUA, true, 2)
+##	draw_circle(_tip.global_position, 20, Color.AQUA)
 
 func _input(event: InputEvent) -> void:
+#	if event is InputEventKey:
+#		# Check for arrow key events
+#		var input = Input.get_vector("left", "right", "up", "down")
+#		input = input.normalized() 
+#		var simulated_event
+#
+#
+#		if event.pressed:
+#			if _touch_index == -1:
+#				simulated_event = InputEventScreenTouch.new() 
+#				simulated_event.index = 0
+#				simulated_event.position = _center
+#				simulated_event.pressed = true
+#			else:
+#				simulated_event = InputEventScreenDrag.new() 
+#				simulated_event.position = _center + input 
+#				simulated_event.index = _touch_index
+#		else:
+#			simulated_event = InputEventScreenTouch.new()
+#			simulated_event.index = _touch_index
+#			simulated_event.pressed = false
+#
+#		event = simulated_event
+#		print("SIMULATED", event, " touch ID=", _touch_index)
+#
+#		if event is InputEventKey:
+#		# Check for arrow key events
+#		var input = Input.get_vector("left", "right", "up", "down")
+#		input = input.normalized() 
+#		_update_input_action(action_right, output.x)
+#		_update_input_action(action_left, -output.x)
+#		_update_input_action(action_up, output.y)
+#		_update_input_action(action_down, -output.y)
+#
+	
 	if event is InputEventScreenTouch:
 		if event.pressed:
 			if _is_point_inside_joystick_area(event.position) and _touch_index == -1:
@@ -86,6 +131,7 @@ func _input(event: InputEvent) -> void:
 		if event.index == _touch_index:
 			_update_joystick(event.position)
 			get_viewport().set_input_as_handled()
+			
 
 func _move_base(new_position: Vector2) -> void:
 	_base.global_position = new_position - _base.pivot_offset * get_global_transform_with_canvas().get_scale()

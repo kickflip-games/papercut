@@ -1,10 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://wjuvo5gqethv"]
+[gd_scene load_steps=21 format=3 uid="uid://wjuvo5gqethv"]
 
 [ext_resource type="Script" path="res://scenes/units/player/Player.gd" id="1_ubmpe"]
 [ext_resource type="Texture2D" uid="uid://dia0dwa0lvkj7" path="res://assets/kenney_scribble_dungeons/PNG/Characters/yellow_character.png" id="2_nuf6p"]
 [ext_resource type="PackedScene" uid="uid://vrwypc6t6y3x" path="res://scenes/units/player/detection_area.tscn" id="3_8sjlo"]
 [ext_resource type="PackedScene" uid="uid://b23gwaj5hwhcy" path="res://scenes/units/player/pickup_box.tscn" id="3_lgxr8"]
-[ext_resource type="Texture2D" uid="uid://bcf5h2rrlf17t" path="res://assets/kenney_scribble_dungeons/PNG/Characters/yellow_hand.png" id="3_ss540"]
 [ext_resource type="Script" path="res://scenes/units/player/xp_magnet_box.gd" id="4_j628w"]
 [ext_resource type="PackedScene" uid="uid://drqeygsg8j7nn" path="res://scenes/weapons/Bow.tscn" id="4_ofbkf"]
 [ext_resource type="Texture2D" uid="uid://cuamtd5wuba8d" path="res://assets/spotlight.png" id="5_hu868"]
@@ -39,6 +38,9 @@ collision_mask = 8
 shape = SubResource("CircleShape2D_uo1at")
 
 [node name="DetectionArea" parent="." instance=ExtResource("3_8sjlo")]
+unique_name_in_owner = true
+collision_layer = 64
+collision_mask = 64
 
 [node name="PickupColliders" type="Node2D" parent="."]
 
@@ -56,18 +58,16 @@ debug_color = Color(0.623529, 0.364706, 0.972549, 0.145098)
 texture = ExtResource("2_nuf6p")
 
 [node name="Inventory" type="Node2D" parent="."]
+unique_name_in_owner = true
 rotation = -1.55509
 script = ExtResource("7_gupt8")
 
-[node name="HandSprite" type="Sprite2D" parent="Inventory"]
-position = Vector2(21, 21)
-texture = ExtResource("3_ss540")
-
 [node name="Bow" parent="Inventory" instance=ExtResource("4_ofbkf")]
-position = Vector2(21, 41)
+position = Vector2(0.984165, -1.01559)
 
 [node name="Deathmachine" parent="Inventory" instance=ExtResource("10_kj83r")]
 position = Vector2(21.83, 52.6636)
+weapon_type = 2
 
 [node name="Sword" parent="Inventory" instance=ExtResource("11_o7kf6")]
 
@@ -153,6 +153,7 @@ offset_top = 372.0
 offset_bottom = 672.0
 
 [node name="Virtual joystick right" parent="CanvasLayer/Control/Joysticks" instance=ExtResource("17_ykow5")]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0

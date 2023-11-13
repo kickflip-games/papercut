@@ -21,19 +21,23 @@ func _ready():
 
 
 func get_inputs():
-	var input = Input.get_vector("left", "right", "up", "down")
-	return input.normalized()
+	var input_mouse = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down").normalized()
+	var input_keyboard = Input.get_vector("left", "right", "up", "down").normalized()
+	
+	if input_mouse.length() > 0:
+		return input_mouse
+	else:
+		return input_keyboard
 
 
 func _physics_process(delta):
 	var _current_speed = speed
-	if Input.is_action_pressed("shoot"):
-		_current_speed = walk_speed
+#	if Input.is_action_pressed("shoot"):
+#		_current_speed = walk_speed
 	velocity = get_inputs() * _current_speed
 	if is_alive:
 		move_and_slide()
-		look_at(detection_area.get_nearest_target())
-	
+
 
 
 

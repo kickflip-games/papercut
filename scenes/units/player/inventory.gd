@@ -1,9 +1,12 @@
 extends Node
+class_name Inventory
 
 var active_weapon: Weapon = null:
 	set(w):
 		_enable_weapon(w)
 		active_weapon = w
+	get:
+		return active_weapon
 		
 var available_weapons: Dictionary = {}
 var active_weapon_type: Constants.WeaponType:

@@ -36,7 +36,7 @@ texture = ExtResource("3_1xnif")
 
 [node name="TakeDamageBox" parent="." instance=ExtResource("4_vv6f4")]
 unique_name_in_owner = true
-collision_layer = 8
+collision_layer = 72
 collision_mask = 4
 boxType = 0
 

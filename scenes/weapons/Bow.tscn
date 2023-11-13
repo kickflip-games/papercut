@@ -1,19 +1,36 @@
-[gd_scene load_steps=3 format=3 uid="uid://drqeygsg8j7nn"]
+[gd_scene load_steps=5 format=3 uid="uid://drqeygsg8j7nn"]
 
 [ext_resource type="Script" path="res://scenes/weapons/Bow.gd" id="1_njpy4"]
+[ext_resource type="Texture2D" uid="uid://dia0dwa0lvkj7" path="res://assets/kenney_scribble_dungeons/PNG/Characters/yellow_character.png" id="2_1debj"]
 [ext_resource type="Texture2D" uid="uid://ccbqw12fmmbw0" path="res://assets/kenney_scribble_dungeons/PNG/Items/weapon_bow_arrow.png" id="2_eicd7"]
+[ext_resource type="Texture2D" uid="uid://bcf5h2rrlf17t" path="res://assets/kenney_scribble_dungeons/PNG/Characters/yellow_hand.png" id="3_t3nyd"]
 
 [node name="Bow" type="Area2D"]
 position = Vector2(203, 101)
 script = ExtResource("1_njpy4")
 shot_arc_lim = 0.001
+weapon_type = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = 3.14159
+visible = false
+texture = ExtResource("2_1debj")
+
+[node name="BowSprite" type="Sprite2D" parent="."]
+position = Vector2(54.21, 0)
+rotation = 1.5708
 texture = ExtResource("2_eicd7")
 
+[node name="Sprite2D" type="Sprite2D" parent="BowSprite"]
+position = Vector2(21, 8.00005)
+texture = ExtResource("3_t3nyd")
+
+[node name="Sprite2D2" type="Sprite2D" parent="BowSprite"]
+position = Vector2(-6.10352e-05, 26)
+texture = ExtResource("3_t3nyd")
+
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(0, 19)
+position = Vector2(54.21, 0)
+rotation = 1.5708
 
 [node name="CooldownTimer" type="Timer" parent="."]
 wait_time = 0.05

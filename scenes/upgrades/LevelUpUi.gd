@@ -7,7 +7,9 @@ class_name LevelUpUi
 
 #@onready var upgrade_table = %UpgradeOptions
 @onready var label = $labelLvlUp
+
 @onready var xp_manager:XpManager = get_tree().get_first_node_in_group("Player").get_node("XP")
+@onready var inventory:Inventory = get_tree().get_first_node_in_group("Player").get_node("Inventory")
 
 #@export var upgrade_options:Array[UpgradeInfo] = []
 
@@ -27,6 +29,10 @@ func _ready():
 	
 func _upgrade_purchased():
 	self.visible = false
+	print("Upgrade purchased")
+	# Get active weapon 
+	# increase it's lvl
+	inventory.active_weapon.increment_lvl()
 	get_tree().paused = false
 
 
@@ -50,5 +56,3 @@ func _show_ui():
 	get_tree().paused = true
 
 
-func _on_mouse_enter():
-	print("MOUSE ENTERED")

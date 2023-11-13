@@ -4,8 +4,10 @@ extends Weapon
 
 
 var arrow:PackedScene = preload("res://scenes/weapons/arrow.tscn")
+var target:Vector2 = Vector2.ZERO
 
 @export_range(0.001,50) var shot_arc_lim:float
+
 
 
 func _get_rand_angle():
@@ -36,9 +38,14 @@ func shoot():
 
 
 func _physics_process(delta):
-	if Input.is_action_pressed("shoot"):
-		shoot()
+	look_at(target)
 
+
+func _process(delta):
+	if detection_area_present:
+		target = detection_area.get_nearest_target() 
+		
+	shoot()
 
 func _draw():
 	draw_line(
@@ -55,3 +62,52 @@ func _draw():
 		10,
 		Color.GREEN
 	)
+
+ 
+func set_level(lvl:int):
+	# based on lvl, 
+	# update cooldown timer
+	# update dmg
+	# update size 
+
+	match lvl:
+		1:
+			
+			speed = 300
+			knockback_amount = 50
+			shot_arc_lim = 15
+			cooldown = 1.5
+			damage = 1
+		2:
+			speed = 500
+			knockback_amount = 100
+			shot_arc_lim = 0.001
+			cooldown = 0.8
+			damage = 1
+		3:
+			speed = 500
+			knockback_amount = 100
+			shot_arc_lim = 0.001
+			cooldown = 0.8
+			damage = 5
+		4: 
+			speed = 600
+			knockback_amount = 100
+			shot_arc_lim = 0.001
+			cooldown = 0.5
+			damage = 10
+		5:
+			speed = 600
+			knockback_amount = 100
+			shot_arc_lim = 20
+			cooldown = 0.3
+			damage = 10
+		6:
+			speed = 600
+			knockback_amount = 100
+			shot_arc_lim = 20
+			cooldown = 0.05
+			damage = 10
+	print("Bow Lvl ", lvl)
+	
+	super(lvl)
