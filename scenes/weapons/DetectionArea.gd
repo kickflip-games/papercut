@@ -42,7 +42,6 @@ func get_nearest_target()->Vector2:
 func get_random_targets(n:int)->Array:
 	# get list of n nearest objects 
 	var targets = []
-	var indices = []
 	var max_n = nearby_objects.size()
 	n = clamp(n, 0, max_n)
 	
@@ -51,10 +50,10 @@ func get_random_targets(n:int)->Array:
 		indicies.resize(max_n)
 		indicies.fill(0)
 		for i in range(max_n):
-			indices[i] = i
-		indices.shuffle()
-		indices.resize(n)
-		for index in indices:
+			indicies[i] = i
+		indicies.shuffle()
+		indicies.resize(n)
+		for index in indicies:
 			targets.append(nearby_objects[index].global_position)
 
 		return targets

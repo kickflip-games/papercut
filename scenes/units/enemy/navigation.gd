@@ -16,9 +16,13 @@ class_name Navigation
 @export var avoid_distance: = 45.0
 @export var kockback_force = 0.5
 
+
+
 var _max_speed:float = 200
 var _flock: Array[Node2D] = []
 var _current_v:Vector2
+
+
 
 
 var mypos:Vector2:

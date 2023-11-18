@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/units/enemy/navigation.gd" id="1_dp11o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qcjbk"]
-radius = 66.0303
+radius = 39.0512
 
 [node name="Navigation" type="Area2D"]
 collision_layer = 32

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://wjuvo5gqethv"]
+[gd_scene load_steps=22 format=3 uid="uid://wjuvo5gqethv"]
 
 [ext_resource type="Script" path="res://scenes/units/player/Player.gd" id="1_ubmpe"]
 [ext_resource type="Texture2D" uid="uid://dia0dwa0lvkj7" path="res://assets/kenney_scribble_dungeons/PNG/Characters/yellow_character.png" id="2_nuf6p"]
@@ -15,6 +15,7 @@
 [ext_resource type="LabelSettings" uid="uid://chwgtf1er15no" path="res://scenes/units/player/player_ui_font.tres" id="9_o38mr"]
 [ext_resource type="Script" path="res://scenes/units/player/xpBar.gd" id="9_x27up"]
 [ext_resource type="PackedScene" uid="uid://bingpvpe5cf7c" path="res://scenes/weapons/Deathmachine.tscn" id="10_kj83r"]
+[ext_resource type="PackedScene" uid="uid://dmas3ws6ej7uk" path="res://scenes/weapons/HomingAxe.tscn" id="11_0uubr"]
 [ext_resource type="PackedScene" uid="uid://cnmms0uj76xuc" path="res://scenes/weapons/Sword.tscn" id="11_o7kf6"]
 [ext_resource type="Script" path="res://scenes/units/player/xp_manager.gd" id="12_aa1vf"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/joystick/virtual_joystick.tscn" id="17_ykow5"]
@@ -61,6 +62,10 @@ texture = ExtResource("2_nuf6p")
 unique_name_in_owner = true
 rotation = -1.55509
 script = ExtResource("7_gupt8")
+
+[node name="Axe" parent="Inventory" instance=ExtResource("11_0uubr")]
+position = Vector2(0.779946, -14.014)
+weapon_type = 0
 
 [node name="Bow" parent="Inventory" instance=ExtResource("4_ofbkf")]
 position = Vector2(0.984165, -1.01559)

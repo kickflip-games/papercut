@@ -26,7 +26,7 @@ var detection_area:DetectionArea
 var detection_area_present:bool
 var attack_box_present:bool
 var hp_manager_present:bool
-
+var player:Player
 
 
 
@@ -77,6 +77,8 @@ func set_init_references():
 	if lifetime_timer and lifetime > 0:
 		lifetime_timer.timeout.connect(cleanup)
 		lifetime_timer.wait_time = lifetime
+		
+	player = get_tree().get_first_node_in_group("Player")
 		
 		
 func set_vars():
@@ -129,6 +131,10 @@ func increment_lvl():
 func _cooldown_complete():
 	enable_attack(true)
 	cooldown_timer.stop()
+	_cooldown_complete_custom_functionality()
+	
+func _cooldown_complete_custom_functionality():
+	pass
 	
 
 

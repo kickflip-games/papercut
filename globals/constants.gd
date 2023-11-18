@@ -27,5 +27,6 @@ enum WeaponType {
 	NONE,
 	BOW,
 	DEATHMACHINE,
-	SWORD
+	SWORD,
+	HOMING_AXE
 }
