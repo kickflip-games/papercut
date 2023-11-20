@@ -5,17 +5,18 @@ class_name LevelUpUi
 # bring up upgrades menu
 # on click resumes game
 
-#@onready var upgrade_table = %UpgradeOptions
 @onready var label = $labelLvlUp
+@onready var table = %UpgradesTable
 
 @onready var xp_manager:XpManager = get_tree().get_first_node_in_group("Player").get_node("XP")
 @onready var inventory:Inventory = get_tree().get_first_node_in_group("Player").get_node("Inventory")
 
-#@export var upgrade_options:Array[UpgradeInfo] = []
+@onready var upgrade_button:PackedScene = preload("res://scenes/upgrades/upgrade_button.tscn")
+@export var upgrade_options:Array[UpgradeInfo] = []
 
 
 
-@export var max_options = 4
+@export var max_options = 3
 
 
 signal upgrade_purchased
@@ -27,12 +28,10 @@ func _ready():
 	upgrade_purchased.connect(_upgrade_purchased)
 	
 	
-func _upgrade_purchased():
+func _upgrade_purchased(wtype:Constants.WeaponType):
 	self.visible = false
 	print("Upgrade purchased")
-	# Get active weapon 
-	# increase it's lvl
-	inventory.active_weapon.increment_lvl()
+	inventory.upgrade_weapon(wtype)
 	get_tree().paused = false
 
 
@@ -49,10 +48,10 @@ func _show_ui():
 	tween.play()
 	self.visible = true
 #	var options = 0
-#	for i in range(max_options):
-#		var option_choice = itemOptions.instantiate()
-#		option_choice.item = get_random_item()
-#		upgradeOptions.add_child(option_choice)
+	for i in range(max_options):
+		var btn:UpgradeButton = upgrade_button.instantiate()
+		btn.upgrade = upgrade_options[i]
+		table.add_child(btn)
 	get_tree().paused = true
 
 

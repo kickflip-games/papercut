@@ -108,6 +108,5 @@ func set_level(lvl:int):
 			shot_arc_lim = 20
 			cooldown = 0.05
 			damage = 10
-	print("Bow Lvl ", lvl)
 	
 	super(lvl)

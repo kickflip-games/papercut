@@ -69,6 +69,8 @@ scale = Vector2(0.8, 0.8)
 texture = ExtResource("3_d5kas")
 
 [node name="CooldownTimer" type="Timer" parent="."]
+
+[node name="ResetTimer" type="Timer" parent="."]
 autostart = true
 
 [node name="ChangeDirectionTimer" type="Timer" parent="."]

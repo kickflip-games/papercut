@@ -14,3 +14,4 @@ func _input(event: InputEvent) -> void:
 func _pause() -> void:
 	pause_menu.pause()
 	get_tree().paused = true
+

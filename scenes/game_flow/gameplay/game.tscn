@@ -10,10 +10,10 @@
 [ext_resource type="LabelSettings" uid="uid://di2inmld2sx5d" path="res://scenes/fonts/title_font.tres" id="7_twwe7"]
 [ext_resource type="PackedScene" uid="uid://brf2rg0tybjeg" path="res://scenes/debug_tools/debug_txt.tscn" id="8_6uwrs"]
 [ext_resource type="PackedScene" uid="uid://dbk4af5rnt1x8" path="res://addons/debug_menu/debug_menu.tscn" id="9_o2vwi"]
-[ext_resource type="Script" path="res://scenes/upgrades/LevelUpUi.gd" id="10_qgoc4"]
-[ext_resource type="PackedScene" uid="uid://dbstyykq2hos4" path="res://scenes/upgrades/upgrade.tscn" id="11_3c6lm"]
+[ext_resource type="PackedScene" uid="uid://nq8tp1apdyry" path="res://scenes/upgrades/level_up_ui.tscn" id="12_7ui3t"]
 [ext_resource type="Script" path="res://scenes/game_flow/game_over_panel.gd" id="12_86xoj"]
 [ext_resource type="PackedScene" uid="uid://cko02oljhiby" path="res://scenes/game_flow/paused/paused.tscn" id="13_w46h1"]
+[ext_resource type="PackedScene" uid="uid://btq7dgkmmegoe" path="res://scenes/pickups/xp_pickup.tscn" id="15_78s7v"]
 
 [sub_resource type="Resource" id="Resource_6plnk"]
 script = ExtResource("6_o6jjo")
@@ -130,51 +130,6 @@ offset_top = 123.0
 offset_right = -4.0
 offset_bottom = 523.0
 
-[node name="LevelUpUi" type="Panel" parent="GUI/Control"]
-unique_name_in_owner = true
-process_mode = 2
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -317.0
-offset_top = -220.0
-offset_right = 317.0
-offset_bottom = 116.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-mouse_default_cursor_shape = 2
-script = ExtResource("10_qgoc4")
-
-[node name="labelLvlUp" type="Label" parent="GUI/Control/LevelUpUi"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 143.0
-grow_horizontal = 2
-text = "LEVEL UP!"
-label_settings = ExtResource("7_twwe7")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="upgrade" parent="GUI/Control/LevelUpUi" instance=ExtResource("11_3c6lm")]
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 195.0
-offset_top = 121.0
-offset_right = 429.0
-offset_bottom = 230.0
-grow_horizontal = 1
-grow_vertical = 1
-mouse_force_pass_scroll_events = false
-
 [node name="GameOverPanel" type="Panel" parent="GUI/Control"]
 visible = false
 layout_mode = 1
@@ -213,5 +168,24 @@ text = "Press R to restart"
 label_settings = SubResource("LabelSettings_oscfq")
 horizontal_alignment = 1
 
+[node name="LevelUpUI" parent="GUI/Control" instance=ExtResource("12_7ui3t")]
+visible = false
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 634.0
+offset_bottom = 336.0
+grow_horizontal = 1
+grow_vertical = 1
+
 [node name="Paused" parent="GUI" instance=ExtResource("13_w46h1")]
 visible = false
+
+[node name="XP_Pickup" parent="." instance=ExtResource("15_78s7v")]
+position = Vector2(370, 219)
+experience = 10.0

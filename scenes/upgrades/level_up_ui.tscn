@@ -1,0 +1,72 @@
+[gd_scene load_steps=7 format=3 uid="uid://nq8tp1apdyry"]
+
+[ext_resource type="Script" path="res://scenes/upgrades/LevelUpUi.gd" id="1_mhpqb"]
+[ext_resource type="LabelSettings" uid="uid://di2inmld2sx5d" path="res://scenes/fonts/title_font.tres" id="2_flh0q"]
+[ext_resource type="Script" path="res://scenes/upgrades/upgrade_info.gd" id="2_i5ru4"]
+
+[sub_resource type="Resource" id="Resource_q0xhu"]
+script = ExtResource("2_i5ru4")
+name = "Bow"
+description = "Make bow shoot faster"
+image = ""
+weapon_type = 1
+
+[sub_resource type="Resource" id="Resource_3bqi4"]
+script = ExtResource("2_i5ru4")
+name = "Sword"
+description = "Make sword swing"
+image = ""
+weapon_type = 3
+
+[sub_resource type="Resource" id="Resource_kuuaa"]
+script = ExtResource("2_i5ru4")
+name = "Axe"
+description = "A hominh axe"
+image = ""
+weapon_type = 4
+
+[node name="LevelUpUi" type="Panel"]
+process_mode = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -317.0
+offset_top = -220.0
+offset_right = 317.0
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+mouse_default_cursor_shape = 2
+script = ExtResource("1_mhpqb")
+upgrade_options = Array[ExtResource("2_i5ru4")]([SubResource("Resource_q0xhu"), SubResource("Resource_3bqi4"), SubResource("Resource_kuuaa")])
+
+[node name="labelLvlUp" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 143.0
+grow_horizontal = 2
+text = "LEVEL UP!"
+label_settings = ExtResource("2_flh0q")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UpgradesTable" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -316.0
+offset_top = -232.0
+offset_right = 316.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1

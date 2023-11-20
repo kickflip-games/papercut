@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dbstyykq2hos4"]
 
-[ext_resource type="Script" path="res://scenes/upgrades/upgrade.gd" id="1_w7ban"]
+[ext_resource type="Script" path="res://scenes/upgrades/upgrade_button.gd" id="1_02j4h"]
 
 [node name="upgrade" type="Button"]
 anchors_preset = 15
@@ -9,4 +9,4 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "CLICK  ME"
-script = ExtResource("1_w7ban")
+script = ExtResource("1_02j4h")
