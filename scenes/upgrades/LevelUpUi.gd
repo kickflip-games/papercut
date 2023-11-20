@@ -28,10 +28,9 @@ func _ready():
 	upgrade_purchased.connect(_upgrade_purchased)
 	
 	
-func _upgrade_purchased(wtype:Constants.WeaponType):
+func _upgrade_purchased():
 	self.visible = false
 	print("Upgrade purchased")
-	inventory.upgrade_weapon(wtype)
 	get_tree().paused = false
 
 
@@ -48,10 +47,20 @@ func _show_ui():
 	tween.play()
 	self.visible = true
 #	var options = 0
+	for c in table.get_children():
+		table.remove_child(c)
+		c.queue_free()
+
 	for i in range(max_options):
 		var btn:UpgradeButton = upgrade_button.instantiate()
 		btn.upgrade = upgrade_options[i]
+		btn.pressed.connect(trigger_upgrade_purchased_signal)
 		table.add_child(btn)
 	get_tree().paused = true
+
+
+
+func trigger_upgrade_purchased_signal():
+	upgrade_purchased.emit()
 
 
