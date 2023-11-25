@@ -30,6 +30,7 @@ func _hide_weapon(wtype: Constants.WeaponType):
 	w.set_physics_process(false)
 	
 func _unlock_weapon(wtype: Constants.WeaponType):
+	print("Unlocking ", Constants.WeaponType.keys()[wtype])
 	var w = available_weapons[wtype]
 	unlocked_weapons.append(wtype)
 	w.show()

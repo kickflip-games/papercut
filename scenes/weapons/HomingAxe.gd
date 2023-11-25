@@ -21,7 +21,6 @@ var rotation_speed:float = 15
 
 
 
-
 # TODO: Make the axe sprite rotate on throw
 # TODO: make the axe come back + cooldown after it goes to N paths
 
@@ -113,5 +112,49 @@ func _physics_process(delta):
 		
 	
 
+
+
+ 
+func set_level(lvl:int):
+	# based on lvl, 
+	# update cooldown timer
+	# update dmg
+	# update size 
+
+	match lvl:
+		1:
+			speed = 250
+			paths = 2
+			damage = 1
+			change_direction_timer.wait_time = 1 
+		2:
+			speed = 500
+			paths = 3
+			damage = 1
+			change_direction_timer.wait_time = 1 
+		3:
+			speed = 600
+			paths = 4
+			damage = 2
+			change_direction_timer.wait_time = 1 
+		4: 
+			speed = 750
+			paths = 4
+			damage = 2
+			change_direction_timer.wait_time = 0.5
+		5:
+			speed = 750
+			paths = 4
+			damage = 2
+			change_direction_timer.wait_time = 0.5
+			cooldown_timer.wait_time = 0.3
+		6:
+			speed = 750
+			paths = 4
+			damage = 4
+			change_direction_timer.wait_time = 0.5
+			cooldown_timer.wait_time = 0.3
+	
+	super(lvl)
 
 

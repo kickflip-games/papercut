@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cnmms0uj76xuc"]
+[gd_scene load_steps=9 format=3 uid="uid://cnmms0uj76xuc"]
 
 [ext_resource type="Script" path="res://scenes/weapons/sword.gd" id="1_giq0u"]
 [ext_resource type="Texture2D" uid="uid://c6hpeghmna37f" path="res://assets/kenney_scribble_dungeons/PNG/Items/weapon_longsword.png" id="2_y8p5v"]
 [ext_resource type="PackedScene" uid="uid://ckrxk10li5n0j" path="res://scenes/units/hit_boxes/attack_box.tscn" id="3_0nnvv"]
 [ext_resource type="Texture2D" uid="uid://bcf5h2rrlf17t" path="res://assets/kenney_scribble_dungeons/PNG/Characters/yellow_hand.png" id="3_g4k0w"]
+[ext_resource type="Texture2D" uid="uid://cbabfouc8j2t1" path="res://assets/sid_assets/Ruler.png" id="4_2sq58"]
 [ext_resource type="PackedScene" uid="uid://p8orp54ynall" path="res://addons/trail_2d/trail_fx.tscn" id="4_d4sas"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jj7ck"]
@@ -21,6 +22,7 @@ attack_size = 3.0
 damage = 20.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(-1, -45)
 texture = ExtResource("2_y8p5v")
 
@@ -28,6 +30,12 @@ texture = ExtResource("2_y8p5v")
 position = Vector2(6, 24)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("3_g4k0w")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(10.34, -45)
+rotation = 1.55683
+scale = Vector2(1.46, 2.5)
+texture = ExtResource("4_2sq58")
 
 [node name="CooldownTimer" type="Timer" parent="."]
 

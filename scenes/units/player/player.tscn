@@ -64,7 +64,6 @@ script = ExtResource("7_gupt8")
 
 [node name="Axe" parent="Inventory" instance=ExtResource("11_0uubr")]
 position = Vector2(-40.7279, 17.642)
-weapon_type = 0
 
 [node name="Bow" parent="Inventory" instance=ExtResource("4_ofbkf")]
 position = Vector2(0.984165, -1.01559)
@@ -74,7 +73,7 @@ position = Vector2(0.984165, -1.01559)
 [node name="Sprite2D" parent="Inventory/Sword" index="0"]
 position = Vector2(-0.926852, -58.9927)
 
-[node name="AttackBox" parent="Inventory/Sword" index="2"]
+[node name="AttackBox" parent="Inventory/Sword" index="3"]
 position = Vector2(0.0887343, -58.0085)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]

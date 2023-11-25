@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://davwsqeo4t1jy"]
+[gd_scene load_steps=6 format=3 uid="uid://davwsqeo4t1jy"]
 
 [ext_resource type="Script" path="res://scenes/weapons/arrow.gd" id="1_17ppk"]
 [ext_resource type="PackedScene" uid="uid://ckrxk10li5n0j" path="res://scenes/units/hit_boxes/attack_box.tscn" id="2_8ox7y"]
 [ext_resource type="Texture2D" uid="uid://dwcxa1jpooeme" path="res://assets/kenney_scribble_dungeons/PNG/Items/weapon_arrow.png" id="3_xd3do"]
+[ext_resource type="Texture2D" uid="uid://d0ug5y6lesr62" path="res://assets/sid_assets/Pencil.png" id="4_j18w6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yx5qc"]
 size = Vector2(8, 45)
@@ -23,8 +24,14 @@ position = Vector2(-23, 1.90735e-06)
 shape = SubResource("RectangleShape2D_yx5qc")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+visible = false
 rotation = 1.5708
 texture = ExtResource("3_xd3do")
+
+[node name="Sprite2" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("4_j18w6")
+offset = Vector2(3.4, 0)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 

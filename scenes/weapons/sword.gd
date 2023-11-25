@@ -55,3 +55,41 @@ func swing():
 func _physics_process(delta):
 	if Input.is_action_pressed("shoot"):
 		swing()
+
+
+
+
+ 
+func set_level(lvl:int):
+	# based on lvl, 
+	# update cooldown timer
+	# update dmg
+	# update size 
+
+	match lvl:
+		1:
+			rotation_amount = 10
+			swing_duration = 2
+			damage = 1
+		2:
+			rotation_amount = 90
+			swing_duration = 4
+			damage = 2
+		3:
+			rotation_amount = 90
+			swing_duration = 2
+			damage = 4
+		4: 
+			rotation_amount = 180
+			swing_duration = 2
+			damage = 6
+		5:
+			rotation_amount = 360
+			swing_duration = 2
+			damage = 8
+		6:
+			rotation_amount = 720
+			swing_duration = 2
+			damage = 8
+	
+	super(lvl)
