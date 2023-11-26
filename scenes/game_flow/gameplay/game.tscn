@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://7441le0sa3s"]
+[gd_scene load_steps=21 format=3 uid="uid://7441le0sa3s"]
 
 [ext_resource type="Script" path="res://scenes/game_flow/gameplay/game_controller.gd" id="1_7w8pk"]
 [ext_resource type="Texture2D" uid="uid://bxngmamkuppd3" path="res://assets/kenney_scribble_dungeons/PNG/tile.png" id="1_mncfe"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://nq8tp1apdyry" path="res://scenes/upgrades/level_up_ui.tscn" id="12_7ui3t"]
 [ext_resource type="Script" path="res://scenes/game_flow/game_over_panel.gd" id="12_86xoj"]
 [ext_resource type="PackedScene" uid="uid://cko02oljhiby" path="res://scenes/game_flow/paused/paused.tscn" id="13_w46h1"]
+[ext_resource type="Script" path="res://scenes/game_flow/gameplay/Control2.gd" id="14_08cw6"]
 
 [sub_resource type="Resource" id="Resource_6plnk"]
 script = ExtResource("6_o6jjo")
@@ -55,6 +56,7 @@ script = ExtResource("1_7w8pk")
 [node name="Environment" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment"]
+position = Vector2(649, 8)
 scale = Vector2(421.868, 313.577)
 texture = ExtResource("1_mncfe")
 
@@ -69,12 +71,13 @@ region_enabled = true
 region_rect = Rect2(-2537.24, -2280.98, 5048.12, 3481.33)
 
 [node name="Player" parent="." instance=ExtResource("3_tw26w")]
-position = Vector2(288, 148)
+position = Vector2(142, 105)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("4_n1pc5")]
 spawns = Array[ExtResource("6_o6jjo")]([SubResource("Resource_6plnk"), SubResource("Resource_222b3"), SubResource("Resource_upml2")])
 
 [node name="enemy" parent="." instance=ExtResource("5_7w8w8")]
+position = Vector2(7, 3)
 health = 5
 
 [node name="GUI" type="CanvasLayer" parent="."]
@@ -163,12 +166,16 @@ offset_top = 58.0
 offset_bottom = 207.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Press R to restart"
 label_settings = SubResource("LabelSettings_oscfq")
 horizontal_alignment = 1
 
+[node name="game_over_txt3" type="Label" parent="GUI/Control/GameOverPanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Press R to restart"
+
 [node name="LevelUpUI" parent="GUI/Control" instance=ExtResource("12_7ui3t")]
-visible = false
 layout_mode = 0
 anchors_preset = 0
 anchor_left = 0.0
@@ -184,3 +191,23 @@ grow_vertical = 1
 
 [node name="Paused" parent="GUI" instance=ExtResource("13_w46h1")]
 visible = false
+
+[node name="Timer_Control" type="Control" parent="GUI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("14_08cw6")
+
+[node name="timer_1" type="Timer" parent="GUI/Timer_Control"]
+autostart = true
+
+[node name="timer_label" type="Label" parent="GUI/Timer_Control"]
+layout_mode = 0
+offset_right = 176.0
+offset_bottom = 89.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+
+[connection signal="timeout" from="GUI/Timer_Control/timer_1" to="GUI/Timer_Control" method="_on_timer_timeout"]

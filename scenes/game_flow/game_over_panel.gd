@@ -11,8 +11,13 @@ func _ready():
 
 
 func _show_gameover():
+	
+	
 	self.visible = true
 	can_restart = true
+	
+
+	
 	
 	
 func _input(event: InputEvent) -> void:
