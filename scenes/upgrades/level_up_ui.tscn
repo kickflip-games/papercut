@@ -9,21 +9,21 @@ script = ExtResource("2_i5ru4")
 name = "Bow"
 description = "Make bow shoot faster"
 image = ""
-weapon_type = 1
+weapon_type = 0
 
 [sub_resource type="Resource" id="Resource_3bqi4"]
 script = ExtResource("2_i5ru4")
 name = "Sword"
 description = "Make sword swing"
 image = ""
-weapon_type = 3
+weapon_type = 0
 
 [sub_resource type="Resource" id="Resource_kuuaa"]
 script = ExtResource("2_i5ru4")
 name = "Axe"
 description = "A hominh axe"
 image = ""
-weapon_type = 4
+weapon_type = 0
 
 [node name="LevelUpUi" type="Panel"]
 process_mode = 2
@@ -48,7 +48,7 @@ unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 143.0
+offset_bottom = 70.0
 grow_horizontal = 2
 text = "LEVEL UP!"
 label_settings = ExtResource("2_flh0q")

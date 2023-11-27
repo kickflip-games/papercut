@@ -2,11 +2,10 @@
 
 [ext_resource type="Script" path="res://scenes/upgrades/upgrade_button.gd" id="1_02j4h"]
 
-[node name="upgrade" type="Button"]
+[node name="upgrade" type="TextureButton"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "CLICK  ME"
 script = ExtResource("1_02j4h")

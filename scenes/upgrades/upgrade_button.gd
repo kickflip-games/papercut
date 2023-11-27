@@ -1,4 +1,4 @@
-extends Button
+extends TextureButton
 class_name UpgradeButton
 
 
@@ -8,7 +8,7 @@ var upgrade:UpgradeInfo
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.pressed.connect(self._on_pressed)
-	self.text = upgrade.name
+	#self.text = upgrade.name
 	
 
 

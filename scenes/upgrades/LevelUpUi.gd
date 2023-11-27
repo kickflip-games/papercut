@@ -54,8 +54,15 @@ func _show_ui():
 	for i in range(max_options):
 		var btn:UpgradeButton = upgrade_button.instantiate()
 		btn.upgrade = upgrade_options[i]
+		
+		#set texture of buttons
+		var texture = load("res://assets/sid_assets/lvlup_btn" + str(i+1) + ".png")
+		
+		btn.texture_normal = texture
+		
 		btn.pressed.connect(trigger_upgrade_purchased_signal)
 		table.add_child(btn)
+		
 	get_tree().paused = true
 
 
