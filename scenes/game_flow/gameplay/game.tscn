@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://7441le0sa3s"]
+[gd_scene load_steps=21 format=3 uid="uid://7441le0sa3s"]
 
 [ext_resource type="Script" path="res://scenes/game_flow/gameplay/game_controller.gd" id="1_7w8pk"]
 [ext_resource type="Texture2D" uid="uid://bxngmamkuppd3" path="res://assets/kenney_scribble_dungeons/PNG/tile.png" id="1_mncfe"]
@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://dbk4af5rnt1x8" path="res://addons/debug_menu/debug_menu.tscn" id="9_o2vwi"]
 [ext_resource type="PackedScene" uid="uid://nq8tp1apdyry" path="res://scenes/upgrades/level_up_ui.tscn" id="12_7ui3t"]
 [ext_resource type="Script" path="res://scenes/game_flow/game_over_panel.gd" id="12_86xoj"]
-[ext_resource type="Theme" uid="uid://bxtdecgwlb77n" path="res://theme_lvlup.tres" id="13_ip1g3"]
 [ext_resource type="PackedScene" uid="uid://cko02oljhiby" path="res://scenes/game_flow/paused/paused.tscn" id="13_w46h1"]
 [ext_resource type="Script" path="res://scenes/game_flow/gameplay/Control2.gd" id="14_08cw6"]
 
@@ -189,7 +188,6 @@ offset_right = 836.0
 offset_bottom = 494.0
 grow_horizontal = 1
 grow_vertical = 1
-theme = ExtResource("13_ip1g3")
 
 [node name="Paused" parent="GUI" instance=ExtResource("13_w46h1")]
 visible = false
