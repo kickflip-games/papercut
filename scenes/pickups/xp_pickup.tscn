@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://btq7dgkmmegoe"]
 
 [ext_resource type="Script" path="res://scenes/pickups/xp_pickup.gd" id="1_n2ytk"]
-[ext_resource type="Texture2D" uid="uid://bcf5h2rrlf17t" path="res://assets/kenney_scribble_dungeons/PNG/Characters/yellow_hand.png" id="2_fkx4i"]
+[ext_resource type="Texture2D" uid="uid://k8fdpj2l2xa" path="res://assets/sid_assets/XP_Orbs.png" id="2_8e22c"]
 [ext_resource type="PackedScene" uid="uid://d0g00ecnpuo2h" path="res://scenes/Trails.tscn" id="3_cmtgr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kk1o1"]
@@ -12,7 +12,7 @@ script = ExtResource("1_n2ytk")
 experience = 1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_fkx4i")
+texture = ExtResource("2_8e22c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_kk1o1")

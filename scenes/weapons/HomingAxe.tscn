@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://dmas3ws6ej7uk"]
 
 [ext_resource type="Script" path="res://scenes/weapons/HomingAxe.gd" id="1_arphm"]
-[ext_resource type="Texture2D" uid="uid://c7ucs7jagh42b" path="res://assets/kenney_scribble_dungeons/PNG/Items/weapon_axe_large.png" id="2_vlx0q"]
+[ext_resource type="Texture2D" uid="uid://cr0lkoklx0fkn" path="res://assets/sid_assets/scissors.png" id="2_gubqe"]
 [ext_resource type="Texture2D" uid="uid://bcf5h2rrlf17t" path="res://assets/kenney_scribble_dungeons/PNG/Characters/yellow_hand.png" id="3_d5kas"]
 [ext_resource type="PackedScene" uid="uid://ckrxk10li5n0j" path="res://scenes/units/hit_boxes/attack_box.tscn" id="4_fvwkx"]
 [ext_resource type="PackedScene" uid="uid://p8orp54ynall" path="res://addons/trail_2d/trail_fx.tscn" id="5_2ogc5"]
@@ -60,7 +60,7 @@ randomness = 1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-1, -45)
-texture = ExtResource("2_vlx0q")
+texture = ExtResource("2_gubqe")
 
 [node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
 visible = false
