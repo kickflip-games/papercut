@@ -8,10 +8,14 @@ var upgrade:UpgradeInfo
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.pressed.connect(self._on_pressed)
-	#self.text = upgrade.name
+#	self.text = upgrade.name
 	
 
 
 func _on_pressed():
+	print("JUST TO MAKE SURE")
+	print(upgrade.weapon_type)
 	inventory.upgrade_weapon(upgrade.weapon_type)	
+	
+
 
