@@ -77,6 +77,8 @@ func set_init_references():
 	if lifetime_timer and lifetime > 0:
 		lifetime_timer.timeout.connect(cleanup)
 		lifetime_timer.wait_time = lifetime
+		lifetime_timer.start(lifetime)
+		
 		
 	player = get_tree().get_first_node_in_group("Player")
 		
@@ -91,6 +93,7 @@ func set_vars():
 	
 func cleanup():
 	emit_signal("remove_from_array",self)
+	enable_attack(false)
 	queue_free()
 
 func _on_screen_exited():

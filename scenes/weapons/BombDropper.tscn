@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvlwciphnp01j"]
+
+[ext_resource type="Script" path="res://scenes/weapons/bomb_dropper.gd" id="1_hgan5"]
+
+[node name="BombDropper" type="Area2D"]
+script = ExtResource("1_hgan5")
+
+[node name="CooldownTimer" type="Timer" parent="."]
+wait_time = 0.05

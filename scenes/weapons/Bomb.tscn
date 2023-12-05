@@ -1,0 +1,83 @@
+[gd_scene load_steps=14 format=3 uid="uid://cpm4rf8ih3d4i"]
+
+[ext_resource type="Script" path="res://scenes/weapons/bomb.gd" id="1_f0auy"]
+[ext_resource type="PackedScene" uid="uid://ckrxk10li5n0j" path="res://scenes/units/hit_boxes/attack_box.tscn" id="2_fj1mv"]
+[ext_resource type="Texture2D" uid="uid://bt6g70f4e0wme" path="res://assets/kenney_scribble_dungeons/PNG/Items/weapon_ink_pot.png" id="2_n0q6x"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xegee"]
+
+[sub_resource type="Gradient" id="Gradient_k5t34"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0.352941)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_agtvs"]
+gradient = SubResource("Gradient_k5t34")
+
+[sub_resource type="Curve" id="Curve_2pt7b"]
+max_value = 100.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0735294, 0), 0.0, 0.0, 0, 0, Vector2(0.203574, 100), 140.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_aakny"]
+curve = SubResource("Curve_2pt7b")
+
+[sub_resource type="Curve" id="Curve_n6ort"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(0.205487, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_jgj3u"]
+curve = SubResource("Curve_n6ort")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_s7d30"]
+lifetime_randomness = 0.67
+emission_shape = 1
+emission_sphere_radius = 35.46
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.3
+initial_velocity_max = 6.99
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_max = 11.643
+damping_curve = SubResource("CurveTexture_aakny")
+scale_min = 0.0
+scale_max = 13.69
+scale_curve = SubResource("CurveTexture_jgj3u")
+color_ramp = SubResource("GradientTexture1D_agtvs")
+attractor_interaction_enabled = false
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_slfbw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s3kfq"]
+radius = 38.2099
+
+[node name="Bomb" type="Area2D"]
+script = ExtResource("1_f0auy")
+lifetime = 2.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_n0q6x")
+
+[node name="ExplosionFX" type="GPUParticles2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+material = SubResource("CanvasItemMaterial_xegee")
+emitting = false
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_s7d30")
+texture = SubResource("CanvasTexture_slfbw")
+lifetime = 2.0
+explosiveness = 1.0
+randomness = 1.0
+
+[node name="AttackBox" parent="." instance=ExtResource("2_fj1mv")]
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape2D" parent="AttackBox" index="0"]
+shape = SubResource("CircleShape2D_s3kfq")
+
+[node name="PreExplosionTimer" type="Timer" parent="."]
+
+[node name="PostExplosionTimer" type="Timer" parent="."]
+
+[editable path="AttackBox"]

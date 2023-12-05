@@ -26,8 +26,7 @@ func get_inputs():
 	
 	if input_mouse.length() > 0:
 		return input_mouse
-	else:
-		return input_keyboard
+	return input_keyboard
 
 
 func _physics_process(delta):
