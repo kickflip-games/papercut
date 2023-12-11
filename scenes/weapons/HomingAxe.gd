@@ -4,7 +4,7 @@ class_name Axe
 enum AXE_STATES{
 	ATTACKING,
 	IDLE,
-	RESETING
+	RESETING,
 }
 
 
@@ -14,6 +14,8 @@ var target_array:Array = []
 var paths = 2 # number of targets to chain-in
 var direction:Vector2 = Vector2.ZERO
 var rotation_speed:float = 15
+
+@onready var trail_fx = $trail_fx
 @onready var reseting:bool = true
 @onready var reset_timer:Timer = get_node("ResetTimer")
 @onready var change_direction_timer:Timer  = get_node("ChangeDirectionTimer")
@@ -24,9 +26,15 @@ var rotation_speed:float = 15
 # TODO: Make the axe sprite rotate on throw
 # TODO: make the axe come back + cooldown after it goes to N paths
 
+
+var on_player:
+	get:
+		return  global_position.distance_to(player.global_position) <= 15
+
+
 func _change_state(new_state):
 	var keys = AXE_STATES.keys()
-	print("From ", keys[_state], " to ", keys[new_state])
+	Log.info("AXE: From %0 to %1".format([keys[_state], keys[new_state]], "%_"))
 	_state = new_state
 
 
@@ -36,6 +44,13 @@ func _ready():
 	change_direction_timer.timeout.connect(_on_change_direction_timeout)
 	reset_timer.timeout.connect(_on_reset_pos_timer_timeout)
 
+func enable_attack(enable:bool=true):
+	super(enable)
+	if (enable):
+		trail_fx.visible = true
+	else:
+		trail_fx.visible = false
+
 
 func add_paths():
 	_change_state(AXE_STATES.ATTACKING)
@@ -43,11 +58,11 @@ func add_paths():
 	target_array.clear()
 	target_array = detection_area.get_random_targets(paths)
 	enable_attack(true)
-	print("Targets set: ", target_array)
 	if target_array.size()> 0:
 		target = target_array[0]
 		process_path()
-
+	else:
+		_on_reset_pos_timer_timeout()
 
 
 func process_path():
@@ -62,7 +77,6 @@ func process_path():
 
 
 func _cooldown_complete_custom_functionality():
-	print("COOLDOWN completed")
 	reset_timer.stop()
 	cooldown_timer.stop()
 	add_paths()
@@ -73,7 +87,6 @@ func _on_attack_collision(body:Node2D):
 	
 
 func _on_change_direction_timeout():
-	print("Change direction triggered")
 	if target_array.size() > 0:
 		target_array.remove_at(0)
 		if target_array.size() > 0:
@@ -94,25 +107,37 @@ func _start_reset():
 
 
 func _on_reset_pos_timer_timeout():
-	print("RESET completed")
 	reseting = true
 	cooldown_timer.start()
 
 
 func _physics_process(delta):
-	if reseting:
-		var distance_from_player = global_position.distance_to(player.global_position)
-		if  distance_from_player > 15:
-			sprite.rotation = 0
-			direction = global_position.direction_to(player.global_position)
-			position += direction*speed*delta*2
-	else:	
+	if _state == AXE_STATES.RESETING:
+		if !on_player:
+			_move_to_player(delta)
+		else:
+			_change_state(AXE_STATES.IDLE)
+			enable_attack(false)
+	
+	elif _state == AXE_STATES.IDLE:
+		if !on_player:
+			_move_to_player(delta)
+			
+	elif _state == AXE_STATES.ATTACKING:
 		sprite.rotation += rotation_speed * delta
 		position += direction*speed*delta
 		
 	
 
+func _move_to_player(delta):
+	sprite.rotation = 0
+	direction = global_position.direction_to(player.global_position)
+	position += direction*speed*delta*2
 
+
+func unlock_weapon():
+	super()
+	_cooldown_complete()
 
  
 func set_level(lvl:int):

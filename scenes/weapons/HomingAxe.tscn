@@ -6,6 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://ckrxk10li5n0j" path="res://scenes/units/hit_boxes/attack_box.tscn" id="4_fvwkx"]
 [ext_resource type="PackedScene" uid="uid://p8orp54ynall" path="res://addons/trail_2d/trail_fx.tscn" id="5_2ogc5"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jj7ck"]
+size = Vector2(39, 34)
+
+[sub_resource type="Gradient" id="Gradient_mggk4"]
+offsets = PackedFloat32Array(0, 0.394387, 0.649926, 1)
+colors = PackedColorArray(0, 0.716667, 1, 1, 0.905882, 0.956863, 1, 0.360784, 0.945098, 0.976471, 1, 0, 1, 1, 1, 0)
+
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xegee"]
 
 [sub_resource type="Gradient" id="Gradient_k5t34"]
@@ -37,26 +44,9 @@ color_ramp = SubResource("GradientTexture1D_agtvs")
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_slfbw"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jj7ck"]
-size = Vector2(39, 34)
-
-[sub_resource type="Gradient" id="Gradient_mggk4"]
-offsets = PackedFloat32Array(0, 0.394387, 0.649926, 1)
-colors = PackedColorArray(0, 0.716667, 1, 1, 0.905882, 0.956863, 1, 0.360784, 0.945098, 0.976471, 1, 0, 1, 1, 1, 0)
-
 [node name="Axe" type="Area2D"]
 script = ExtResource("1_arphm")
 weapon_type = 4
-
-[node name="explosion" type="GPUParticles2D" parent="."]
-material = SubResource("CanvasItemMaterial_xegee")
-position = Vector2(-1, -64)
-amount = 20
-process_material = SubResource("ParticleProcessMaterial_6yerv")
-texture = SubResource("CanvasTexture_slfbw")
-lifetime = 5.0
-speed_scale = 10.92
-randomness = 1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-1, -45)
@@ -71,7 +61,6 @@ texture = ExtResource("3_d5kas")
 [node name="CooldownTimer" type="Timer" parent="."]
 
 [node name="ResetTimer" type="Timer" parent="."]
-autostart = true
 
 [node name="ChangeDirectionTimer" type="Timer" parent="."]
 
@@ -95,6 +84,16 @@ visibility_layer = 32
 position = Vector2(-1, 4)
 gradient = SubResource("Gradient_mggk4")
 max_length = 15
+
+[node name="movementFX" type="GPUParticles2D" parent="trail_fx"]
+material = SubResource("CanvasItemMaterial_xegee")
+position = Vector2(-1, -37)
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_6yerv")
+texture = SubResource("CanvasTexture_slfbw")
+lifetime = 5.0
+speed_scale = 10.92
+randomness = 1.0
 
 [editable path="AttackBox"]
 [editable path="trail_fx"]

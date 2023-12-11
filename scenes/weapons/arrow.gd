@@ -11,6 +11,11 @@ var direction_vector:Vector2:
 		self.look_at(point_at + Vector2.RIGHT)
 		
 
+
+func _ready():
+	super()
+	call_deferred("enable_attack", true)
+
 func _on_death():
 	cleanup()
 

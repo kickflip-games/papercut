@@ -19,7 +19,7 @@ func _ready():
 	if available_weapons.size() > 0:
 		for wtype in available_weapons.keys():
 			_hide_weapon(wtype)
-	unlock_next_weapon()
+#	call_deferred("unlock_next_weapon")
 	
 
 func _hide_weapon(wtype: Constants.WeaponType):
@@ -30,14 +30,10 @@ func _hide_weapon(wtype: Constants.WeaponType):
 	w.set_physics_process(false)
 	
 func _unlock_weapon(wtype: Constants.WeaponType):
-	print("Unlocking ", Constants.WeaponType.keys()[wtype])
-	var w = available_weapons[wtype]
+	Log.info("Unlocking ", Constants.WeaponType.keys()[wtype])
+	var w:Weapon = available_weapons[wtype]
 	unlocked_weapons.append(wtype)
-	w.show()
-	w.set_process_input(true)
-	w.set_process(true)
-	w.set_physics_process(true)
-	
+	w.unlock_weapon()
 	
 
 
@@ -56,6 +52,7 @@ func _input(event):
 
 
 func upgrade_weapon(wtype:Constants.WeaponType):
+	Log.info("Upgrade the %s"% Constants.WeaponType.keys()[wtype])
 	if wtype in unlocked_weapons:
 		var w:Weapon = available_weapons[wtype]
 		w.increment_lvl()

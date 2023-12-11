@@ -2,7 +2,7 @@ extends Area2D
 class_name XpMagnetBox
 
 const MAX_RADIUS = 10000
-const MIN_RADIUS = 250
+const MIN_RADIUS = 50
 
 @onready var collider = $CollisionShape2D
 

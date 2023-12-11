@@ -12,44 +12,22 @@ class_name LevelUpUi
 @onready var inventory:Inventory = get_tree().get_first_node_in_group("Player").get_node("Inventory")
 
 @onready var upgrade_button:PackedScene = preload("res://scenes/upgrades/upgrade_button.tscn")
-@export var upgrade_options:Array[UpgradeInfo] = []
 
+var upgrade_options:Array[UpgradeInfo]
+var upgrade_info_path : String = "res://scenes/upgrades/upgrade_cards/"
 
 
 @export var max_options = 3
 
 
+
+
 signal upgrade_purchased
 
-func hard_code_upgrade_options():
-	var upgrade_option_1: UpgradeInfo = UpgradeInfo.new()
-	var upgrade_option_2: UpgradeInfo = UpgradeInfo.new()
-	var upgrade_option_3: UpgradeInfo = UpgradeInfo.new()
-	
-	print(upgrade_option_1)
-	
-	upgrade_option_1.name = "Pencil"
-	upgrade_option_1.description = "Shoots a pencil"
-	upgrade_option_1.weapon_type = 1
-	
-	upgrade_option_2.name = "Ruler"
-	upgrade_option_2.description = "A ruler like sword that scales"
-	upgrade_option_2.weapon_type = 3
-	
-	upgrade_option_3.name = "Axe"
-	upgrade_option_3.description = "An axe thing"
-	upgrade_option_3.weapon_type = 4
-	
-	upgrade_options[0] = upgrade_option_1
-	upgrade_options[1] = upgrade_option_2
-	upgrade_options[2] = upgrade_option_3
-	
-	print("PRINTING UPGRADE OPTIONS INDEX 2, WHICH SHOULD HAVE WEAPON_TYPE = 4")
-	print(upgrade_options[2])
-	
 
 
 func _ready():
+	load_upgrade_options()
 	xp_manager.leveled_up.connect(_show_ui)
 	self.visible = false
 	upgrade_purchased.connect(_upgrade_purchased)
@@ -57,15 +35,38 @@ func _ready():
 	
 func _upgrade_purchased():
 	self.visible = false
-	print("Upgrade purchased")
+	Log.debug("Upgrade purchased")
 	get_tree().paused = false
 
 
+func _get_rand_option_idxes(n_options:int)->Array:
+	var option_idxes = []
+	for i in range(len(upgrade_options)):
+		option_idxes.append(i)
+	option_idxes.shuffle()
+	return option_idxes.slice(0, 3)
+
 func _show_ui():
-	print("Showing lvl up UI")
-	# PLAY LVL SFX HERE AS EVERYTHING ELSE PASUED
-	
+	Log.info("Showing lvl up UI")
+	# PLAY LVL SFX HERE AS EVERYTHING ELSE PASUED	
 	label.text = str("Level: ", xp_manager.lvl)
+
+	# clear past options 
+	for c in table.get_children():
+		table.remove_child(c)
+		c.queue_free()
+	
+	# get new options
+	var random_options = _get_rand_option_idxes(3)
+	for i in range(max_options):
+		var upgrd:UpgradeInfo = upgrade_options[random_options[i]]
+		var btn:UpgradeButton = upgrade_button.instantiate()
+		btn.upgrade = upgrd
+		btn.pressed.connect(trigger_upgrade_purchased_signal)
+		table.add_child(btn)
+		Log.info("Adding %s as upgrade option"%upgrd.name)
+		
+	# play anim to show options
 	var tween = self.create_tween()
 	tween.tween_property(
 		self,
@@ -73,29 +74,6 @@ func _show_ui():
 		Vector2(323,65),0.2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
 	tween.play()
 	self.visible = true
-#	var options = 0
-	for c in table.get_children():
-		table.remove_child(c)
-		c.queue_free()
-		
-	
-	hard_code_upgrade_options()
-
-	for i in range(max_options):
-		var btn:UpgradeButton = upgrade_button.instantiate()
-		btn.upgrade = upgrade_options[i]
-		
-		print("TESTESTRERE")
-		print(upgrade_options[i].weapon_type)
-		
-		#set texture of buttons
-		var texture = load("res://assets/sid_assets/lvlup_btn" + str(i+1) + ".png")
-		
-		btn.texture_normal = texture
-		
-		btn.pressed.connect(trigger_upgrade_purchased_signal)
-		table.add_child(btn)
-		
 	get_tree().paused = true
 
 
@@ -104,3 +82,22 @@ func trigger_upgrade_purchased_signal():
 	upgrade_purchased.emit()
 
 
+func load_upgrade_options() -> void:
+	var dir = DirAccess.open(upgrade_info_path)
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		
+		while file_name != "":
+			# Check if the file has the .tres extension
+			if file_name.get_extension() == "tres":
+				var resource_path:String = upgrade_info_path + file_name
+				var resource:UpgradeInfo = ResourceLoader.load(resource_path)
+				if resource != null:
+					upgrade_options.append(resource)
+				else:
+					print("Failed to load resource:", resource_path)
+
+			file_name = dir.get_next()
+
+	Log.debug("Loaded %d upgrde options" % len(upgrade_options))

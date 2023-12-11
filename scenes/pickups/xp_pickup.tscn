@@ -9,7 +9,6 @@
 [node name="XP_Pickup" type="Area2D"]
 collision_layer = 16
 script = ExtResource("1_n2ytk")
-experience = 1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_8e22c")

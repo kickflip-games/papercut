@@ -23,7 +23,7 @@ func _ready():
 	takeDamageBox.take_damage.connect(_on_take_damage)
 
 
-func _on_take_damage(dmg:float, dir:Vector2):
+func _on_take_damage(dmg:float, dir:Vector2, knkback_amt:float):
 	_hp -= dmg
 	if _hp <= 0 && alive:
 		alive = false

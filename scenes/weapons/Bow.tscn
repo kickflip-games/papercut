@@ -32,7 +32,7 @@ position = Vector2(-6.10352e-05, 26)
 texture = ExtResource("3_t3nyd")
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(54.21, 0)
+position = Vector2(30, 0)
 rotation = 1.5708
 
 [node name="CooldownTimer" type="Timer" parent="."]

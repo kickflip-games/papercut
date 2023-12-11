@@ -11,7 +11,7 @@ class_name TakeDamageBox
 
 
 
-signal take_damage(damage_amt:float, damage_dir:Vector2)
+signal take_damage(damage_amt:float, damage_dir:Vector2, knockback_amt:float)
 
 var can_take_damage:bool = true
 var already_hurt_by = []
@@ -32,7 +32,7 @@ func _on_area_entered(area:Area2D):
 		
 		if can_take_damage:
 			var dir:Vector2 = area.global_position - global_position
-			take_damage.emit(area.damage, dir)
+			take_damage.emit(area.damage, dir, area.knockback_amount)
 	
 	
 func _on_disable_timer_timeout():

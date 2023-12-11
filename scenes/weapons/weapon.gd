@@ -62,7 +62,9 @@ func set_init_references():
 	if attack_box:
 		attack_box_present = true
 		attack_box.damage = damage
+		attack_box.knockback_amount = knockback_amount
 		attack_box.area_entered.connect(_on_attack_collision)
+		call_deferred("enable_attack", false)
 
 	screen_notifier = get_node_or_null(root + "/VisibleOnScreenNotifier2D")
 	if screen_notifier:
@@ -106,15 +108,31 @@ func _on_attack_collision(body:Node2D):
 	push_error("ON_ATTACK NOT IMPLEMENTED")
 
 
+func unlock_weapon():
+	show()
+	set_process_input(true)
+	set_process(true)
+	set_physics_process(true)
+	_cooldown_complete()
+	
+	
+
 func enable_attack(enable:bool=true):
 	attack_enabled = enable
 	if !(attack_box_present):
 		return
 		
 	if (enable):
-		attack_box.set_deferred("disabled", false)
+		attack_box.call_deferred('set_disabled', false)
+		attack_box.scale = Vector2.ONE 
+		attack_box.damage = damage
+		attack_box.knockback_amount = knockback_amount
+		Log.info("ENABLING attack for %s" %name)
 	else:
-		attack_box.set_deferred("disabled", true)
+		attack_box.call_deferred('set_disabled', true)
+		attack_box.scale = Vector2.ZERO
+		attack_box.damage = 0
+		Log.info("DISABLING attack for %s" %name)
 
 
 
@@ -132,6 +150,7 @@ func increment_lvl():
 	set_level(level + 1)
 	
 func _cooldown_complete():
+	Log.info("Cooldown complete! ")
 	enable_attack(true)
 	cooldown_timer.stop()
 	_cooldown_complete_custom_functionality()

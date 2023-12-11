@@ -1,32 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://nq8tp1apdyry"]
+[gd_scene load_steps=5 format=3 uid="uid://nq8tp1apdyry"]
 
 [ext_resource type="Script" path="res://scenes/upgrades/LevelUpUi.gd" id="1_mhpqb"]
-[ext_resource type="Theme" uid="uid://bxtdecgwlb77n" path="res://theme_lvlup.tres" id="1_o4rym"]
+[ext_resource type="Theme" uid="uid://bxtdecgwlb77n" path="res://scenes/upgrades/theme_lvlup.tres" id="1_ua53q"]
 [ext_resource type="LabelSettings" uid="uid://di2inmld2sx5d" path="res://scenes/fonts/title_font.tres" id="2_flh0q"]
-[ext_resource type="Script" path="res://scenes/upgrades/upgrade_info.gd" id="2_i5ru4"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2bbot"]
-
-[sub_resource type="Resource" id="Resource_q0xhu"]
-script = ExtResource("2_i5ru4")
-name = "Bow"
-description = "Make bow shoot faster"
-image = ""
-weapon_type = 0
-
-[sub_resource type="Resource" id="Resource_3bqi4"]
-script = ExtResource("2_i5ru4")
-name = "Sword"
-description = "Make sword swing"
-image = ""
-weapon_type = 0
-
-[sub_resource type="Resource" id="Resource_kuuaa"]
-script = ExtResource("2_i5ru4")
-name = "Axe"
-description = "A hominh axe"
-image = ""
-weapon_type = 0
 
 [node name="LevelUpUi" type="Panel"]
 process_mode = 2
@@ -43,10 +21,9 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 mouse_default_cursor_shape = 2
-theme = ExtResource("1_o4rym")
+theme = ExtResource("1_ua53q")
 theme_override_styles/panel = SubResource("StyleBoxTexture_2bbot")
 script = ExtResource("1_mhpqb")
-upgrade_options = Array[ExtResource("2_i5ru4")]([SubResource("Resource_q0xhu"), SubResource("Resource_3bqi4"), SubResource("Resource_kuuaa")])
 
 [node name="labelLvlUp" type="Label" parent="."]
 unique_name_in_owner = true

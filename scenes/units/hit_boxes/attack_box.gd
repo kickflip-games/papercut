@@ -5,6 +5,7 @@ class_name AttackBox
 ## This 'attacks' any unit that steps in
 
 @export var damage = 1
+@export var knockback_amount = 1
 
 @onready var collider = $CollisionShape2D
 @onready var disable_timer = $DisableTimer
@@ -19,12 +20,15 @@ func _on_area_entered(body:Node2D):
 	pass
 
 
+func set_disabled(disable:bool):
+	collider.call_deferred('set_disabled', disable)
+	
 func temp_disable():
 	disable_timer.start(1)
-	collider.call_deferred('set', 'disabled', true)
+	set_disabled(true)
 
 func _on_disable_timer_timeout():
-	collider.call_deferred('set', 'disabled', false)
+	set_disabled(false)
 
 
 

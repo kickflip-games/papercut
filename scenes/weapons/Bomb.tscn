@@ -1,8 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://cpm4rf8ih3d4i"]
+[gd_scene load_steps=20 format=3 uid="uid://cpm4rf8ih3d4i"]
 
 [ext_resource type="Script" path="res://scenes/weapons/bomb.gd" id="1_f0auy"]
 [ext_resource type="PackedScene" uid="uid://ckrxk10li5n0j" path="res://scenes/units/hit_boxes/attack_box.tscn" id="2_fj1mv"]
 [ext_resource type="Texture2D" uid="uid://bt6g70f4e0wme" path="res://assets/kenney_scribble_dungeons/PNG/Items/weapon_ink_pot.png" id="2_n0q6x"]
+[ext_resource type="Texture2D" uid="uid://cuamtd5wuba8d" path="res://assets/spotlight.png" id="3_dh7r0"]
+[ext_resource type="Texture2D" uid="uid://d3mjqpujgxpc0" path="res://assets/kenney_scribble_dungeons/PNG/arrow.png" id="3_en14y"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xegee"]
 
@@ -14,39 +16,63 @@ gradient = SubResource("Gradient_k5t34")
 
 [sub_resource type="Curve" id="Curve_2pt7b"]
 max_value = 100.0
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0735294, 0), 0.0, 0.0, 0, 0, Vector2(0.203574, 100), 140.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.886957, 0), 0.0, 0.0, 0, 0, Vector2(1, 100), 140.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_aakny"]
 curve = SubResource("Curve_2pt7b")
 
 [sub_resource type="Curve" id="Curve_n6ort"]
-_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(0.205487, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(0.130435, 1), 0.0, 0.0, 0, 0, Vector2(0.655073, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="CurveTexture" id="CurveTexture_jgj3u"]
 curve = SubResource("Curve_n6ort")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_s7d30"]
-lifetime_randomness = 0.67
-emission_shape = 1
-emission_sphere_radius = 35.46
+lifetime_randomness = 1.0
+particle_flag_align_y = true
 particle_flag_disable_z = true
 spread = 180.0
+flatness = 1.0
 gravity = Vector3(0, 0, 0)
-initial_velocity_min = 0.3
-initial_velocity_max = 6.99
+initial_velocity_min = 124.99
+initial_velocity_max = 380.43
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
-damping_max = 11.643
+linear_accel_min = 8.7
+linear_accel_max = 8.7
+radial_accel_min = 7.39
+radial_accel_max = 10.65
 damping_curve = SubResource("CurveTexture_aakny")
+angle_min = -720.0
+angle_max = 720.0
 scale_min = 0.0
-scale_max = 13.69
+scale_max = 0.3
 scale_curve = SubResource("CurveTexture_jgj3u")
 color_ramp = SubResource("GradientTexture1D_agtvs")
 attractor_interaction_enabled = false
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_oh8m7"]
+
+[sub_resource type="Curve" id="Curve_0o63k"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0144928, 1), 1.4, 0.0, 0, 0, Vector2(0.866667, 0.768421), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_yukwk"]
+curve = SubResource("Curve_0o63k")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ohio0"]
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+scale_min = 10.0
+scale_max = 10.0
+scale_curve = SubResource("CurveTexture_yukwk")
+color = Color(1, 1, 1, 0.439216)
+attractor_interaction_enabled = false
+
 [sub_resource type="CanvasTexture" id="CanvasTexture_slfbw"]
+diffuse_texture = ExtResource("3_dh7r0")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s3kfq"]
 radius = 38.2099
@@ -58,16 +84,27 @@ lifetime = 2.0
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_n0q6x")
 
-[node name="ExplosionFX" type="GPUParticles2D" parent="."]
+[node name="InkParticlesFX" type="GPUParticles2D" parent="."]
 modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
 material = SubResource("CanvasItemMaterial_xegee")
 emitting = false
-amount = 100
+amount = 20
 process_material = SubResource("ParticleProcessMaterial_s7d30")
-texture = SubResource("CanvasTexture_slfbw")
-lifetime = 2.0
+texture = ExtResource("3_en14y")
+one_shot = true
 explosiveness = 1.0
 randomness = 1.0
+
+[node name="GrowFX" type="GPUParticles2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+material = SubResource("CanvasItemMaterial_oh8m7")
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_ohio0")
+texture = SubResource("CanvasTexture_slfbw")
+lifetime = 4.0
+one_shot = true
 
 [node name="AttackBox" parent="." instance=ExtResource("2_fj1mv")]
 collision_layer = 4

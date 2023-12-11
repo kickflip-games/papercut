@@ -12,9 +12,9 @@ func _ready():
 	
 
 
-func flash(damage:float, dir:Vector2):
+func flash(damage:float, dir:Vector2, knkback_amt:float):
 	# material.set_shader_param("flash_modifier", 1)
-	flashTween = get_tree().create_tween()
+	flashTween = create_tween()
 	var t = flash_dur / (num_flash * 2)
 	for i in range(num_flash):
 		flashTween.tween_property(self, "modulate", Color.RED, t).set_trans(Tween.TRANS_SINE)

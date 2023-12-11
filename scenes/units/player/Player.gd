@@ -3,9 +3,9 @@ class_name Player
 
 
 # Publically set attributes
-@export var speed:float = 200
-@export var walk_speed:float = 100
-@export var auto_aim:bool = true
+var speed:float = 150
+var walk_speed:float = 100
+var auto_aim:bool = true
 
 @onready var health_manager:Health = $Health
 @onready var detection_area:DetectionArea = $DetectionArea
@@ -42,8 +42,8 @@ func _physics_process(delta):
 
 func _on_death():
 	is_alive = false
-	print("DEAD")
+	Log.debug("DEAD")
 
 
-func _on_take_damage(dmg, dir):
+func _on_take_damage(dmg:float, dir:Vector2, knkback_amt:float):
 	screen_shake.apply_noise_shake()

@@ -4,7 +4,7 @@ class_name Enemy
 
 @export var speed_mean:int = 50
 @export var speed_var:float = 20
-@export var health:int = 2.5
+@export var health:float = 2
 @export var attack_distance:float = 30
 @export var knockback_recovery = 3.5 # sec
 var knockback:Vector2 = Vector2.ZERO
@@ -40,10 +40,10 @@ func _ready():
 	vis_notifier.screen_exited.connect(_hide_sprite)
 
 
-func _on_take_damage(dmg, dir):
+func _on_take_damage(dmg:float, dir:Vector2, knkback_amt:float):
 	var player_dir = Player.global_position - global_position
 	player_dir = player_dir.normalized()
-	knockback = player_dir * -100
+	knockback = player_dir * -knkback_amt
 	var generated_popup:DamagePopUp = dmg_popup.instantiate()
 	get_tree().get_root().call_deferred("add_child", generated_popup)
 	generated_popup.call_deferred("set_values_and_animate", str(dmg), self.global_position, Color.BLACK)

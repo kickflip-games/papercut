@@ -47,9 +47,12 @@ collision_mask = 64
 
 [node name="PickupBox" parent="PickupColliders" instance=ExtResource("3_lgxr8")]
 unique_name_in_owner = true
+monitorable = false
 
 [node name="XpMagnetBox" parent="PickupColliders" instance=ExtResource("3_lgxr8")]
 unique_name_in_owner = true
+top_level = true
+monitorable = false
 script = ExtResource("4_j628w")
 
 [node name="CollisionShape2D" parent="PickupColliders/XpMagnetBox" index="0"]
@@ -66,23 +69,28 @@ unique_name_in_owner = true
 rotation = -1.55509
 script = ExtResource("7_gupt8")
 
-[node name="BombDropper" parent="Inventory" instance=ExtResource("8_u5tt0")]
-position = Vector2(1.01559, 0.984167)
-
 [node name="Axe" parent="Inventory" instance=ExtResource("11_0uubr")]
 position = Vector2(-40.7279, 17.642)
+attack_enabled = false
 
 [node name="Bow" parent="Inventory" instance=ExtResource("4_ofbkf")]
-visible = false
 position = Vector2(0.984165, -1.01559)
+attack_enabled = false
 
 [node name="Sword" parent="Inventory" instance=ExtResource("11_o7kf6")]
+attack_enabled = false
 
 [node name="Sprite2D" parent="Inventory/Sword" index="0"]
 position = Vector2(-0.926852, -58.9927)
 
 [node name="AttackBox" parent="Inventory/Sword" index="3"]
 position = Vector2(0.0887343, -58.0085)
+
+[node name="BombDropper" parent="Inventory" instance=ExtResource("8_u5tt0")]
+position = Vector2(1.01559, 0.984167)
+weapon_type = 5
+knockback_amount = 0.0
+attack_enabled = false
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 scale = Vector2(1, 0.929775)

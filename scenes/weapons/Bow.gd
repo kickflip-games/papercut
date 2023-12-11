@@ -9,6 +9,9 @@ var target:Vector2 = Vector2.ZERO
 @export_range(0.001,50) var shot_arc_lim:float
 
 
+func _ready():
+	super()
+	$BowSprite.visible = false
 
 func _get_rand_angle():
 	var angle = randf_range(-shot_arc_lim, shot_arc_lim)

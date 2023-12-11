@@ -13,12 +13,15 @@ class_name XpManager
 signal leveled_up()
 
 
-var lvl = 1
+var lvl = 0
 
 var max_xp = 10:
 	get:
 		var _max = lvl
-		if lvl < 20:
+		if lvl == 0:
+			_max = 1
+			return 1
+		elif lvl < 20:
 			_max = lvl*5
 		elif lvl < 40:
 			_max = lvl * 10
@@ -43,8 +46,11 @@ func on_xp_pickedup(xp_pickup):
 		xp += xp_pickup.collect()
 		xp_pickup.target = self
 		if xp >= max_xp:
-			lvl += 1
-			xp = 0
-			leveled_up.emit()
-			print("Leveled up : %d"%lvl)
+			call_deferred("lvl_up")
+
+func lvl_up():
+	lvl += 1
+	Log.info("Leveled up : %d->%d" % [lvl-1,lvl])
+	xp = 0
+	leveled_up.emit()
 

@@ -8,6 +8,16 @@
 
 config_version=5
 
+[addons]
+
+resources_spreadsheet_view/color_rows=true
+resources_spreadsheet_view/color_arrays=true
+resources_spreadsheet_view/array_min_width=128.0
+resources_spreadsheet_view/resource_preview_size=50.0
+resources_spreadsheet_view/clip_headers=false
+resources_spreadsheet_view/dupe_arrays=true
+resources_spreadsheet_view/context_menu_on_leftclick=false
+
 [application]
 
 config/name="papercut"
@@ -21,6 +31,8 @@ config/icon="res://assets/icon.svg"
 
 Global="*res://globals/global.gd"
 Sound="*res://globals/sound.gd"
+Log="*res://addons/logger/logger.gd"
+DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 
 [debug]
 
@@ -40,6 +52,10 @@ window/vsync/vsync_mode=0
 [editor]
 
 movie_writer/movie_file="/Users/avaj0001/Documents/personal/godot_projects/movies/gameplay.mp4.avi"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/logger/plugin.cfg", "res://addons/resources_spreadsheet_view/plugin.cfg", "res://addons/simple_resource_icons/plugin.cfg", "res://addons/trail_2d/plugin.cfg")
 
 [input]
 

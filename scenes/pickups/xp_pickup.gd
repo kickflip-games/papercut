@@ -5,7 +5,7 @@ class_name XpPickup
 
 
 
-@export var experience:float = 40
+@export var experience:float = 1
 
 #var spr_green = preload("res://Textures/Items/Gems/Gem_green.png")
 #var spr_blue= preload("res://Textures/Items/Gems/Gem_blue.png")

@@ -27,7 +27,7 @@ func set_values_and_animate(
 
 
 func trigger_tween(end_pos: Vector2, t_grow: float, t_shrink:float):
-	var tween = get_tree().create_tween()
+	var tween = create_tween()
 	tween.tween_property(popup_container, "global_position", end_pos, t_grow+t_shrink).set_trans(Tween.TRANS_LINEAR)
 	tween.parallel()
 	tween.tween_property(popup_container, "scale",  Vector2.ONE, t_grow).set_trans(Tween.TRANS_LINEAR)

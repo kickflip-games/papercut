@@ -12,6 +12,6 @@ func _ready():
 	takeDamageBox.take_damage.connect(_update)
 
 
-func _update(_dmg, _dir):
+func _update(_dmg:float, _dir:Vector2, _knkbck:float):
 	call_deferred("set_value", health._hp)
 

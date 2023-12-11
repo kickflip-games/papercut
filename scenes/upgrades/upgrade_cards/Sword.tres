@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="UpgradeInfo" load_steps=3 format=3 uid="uid://b0w52j6bsn7ht"]
+
+[ext_resource type="Texture2D" uid="uid://bqp2q34xkxf1x" path="res://assets/sid_assets/lvlup_btn2.png" id="1_7annf"]
+[ext_resource type="Script" path="res://scenes/upgrades/upgrade_info.gd" id="1_oa0yo"]
+
+[resource]
+script = ExtResource("1_oa0yo")
+name = "Sword"
+description = "1. Unlocks weapon,2.,3.,4.,5.,6."
+icon = ExtResource("1_7annf")
+weapon_type = 3

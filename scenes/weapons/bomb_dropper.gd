@@ -6,18 +6,25 @@ extends Weapon
 var bomb:PackedScene = preload("res://scenes/weapons/Bomb.tscn")
 var target:Vector2 = Vector2.ZERO
 
+var explosion_size:float = 2
+var explosion_lifetime:float = 1
+
+
 @export var debug:bool = false
 
 func _ready():
 	super()
+	knockback_amount = 0
 	weapon_type = Constants.WeaponType.BOMB_DROPPER
 	
 
 func drop():
-	var bomb_instance = bomb.instantiate() 
+	var bomb_instance:Bomb = bomb.instantiate() 
 	bomb_instance.global_position = global_position
 	get_tree().get_root().call_deferred("add_child", bomb_instance)
 	bomb_instance.speed = speed
+	bomb_instance.explosion_size = explosion_size
+	bomb_instance.lifetime = explosion_lifetime
 	cooldown_timer.start(cooldown)
 	enable_attack(false)
 
@@ -38,36 +45,34 @@ func set_level(lvl:int):
 
 	match lvl:
 		1:
-			
-			speed = 300
-			knockback_amount = 50
+			explosion_size = 2
+			explosion_lifetime = 1
 			cooldown = 1.5
 			damage = 1
 		2:
-			speed = 500
-			knockback_amount = 100
-			cooldown = 0.8
+			explosion_size = 3
+			explosion_lifetime = 1.5
+			cooldown = 1.3
 			damage = 1
 		3:
-			speed = 500
-			knockback_amount = 100
-			
-			cooldown = 0.8
-			damage = 5
+			explosion_size = 4
+			explosion_lifetime = 2
+			cooldown = 1.1
+			damage = 1
 		4: 
-			speed = 600
-			knockback_amount = 100
-			cooldown = 0.5
-			damage = 10
+			explosion_size = 6
+			explosion_lifetime = 2.5
+			cooldown = 1.
+			damage = 1
 		5:
-			speed = 600
-			knockback_amount = 100
-			cooldown = 0.3
-			damage = 10
+			explosion_size = 8
+			explosion_lifetime = 2.5
+			cooldown = 1.5
+			damage = 1.5
 		6:
-			speed = 600
-			knockback_amount = 100
-			cooldown = 0.05
-			damage = 10
+			explosion_size = 10
+			explosion_lifetime = 3
+			cooldown = 1.5
+			damage = 2
 	
 	super(lvl)

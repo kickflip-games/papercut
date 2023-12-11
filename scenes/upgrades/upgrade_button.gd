@@ -9,13 +9,14 @@ var upgrade:UpgradeInfo
 func _ready():
 	self.pressed.connect(self._on_pressed)
 #	self.text = upgrade.name
-	
+#	self.description = upgrade.description 
+# 	TODO: show level of upgrade item
+	# self.level = current_item_level + 1  
+	self.texture_normal = upgrade.icon
 
 
 func _on_pressed():
-	print("JUST TO MAKE SURE")
-	print(upgrade.weapon_type)
-	inventory.upgrade_weapon(upgrade.weapon_type)	
+	inventory.upgrade_weapon(upgrade.weapon_type)
 	
 
 

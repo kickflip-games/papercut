@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/upgrades/upgrade_button.gd" id="1_02j4h"]
 
-[node name="upgrade" type="TextureButton"]
+[node name="te" type="TextureButton"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
