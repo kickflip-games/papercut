@@ -86,4 +86,4 @@ func _input(event: InputEvent) -> void:
 			get_tree().call_group("debug_ui", "hide")
 	if event.is_action_pressed("DEBUG"):
 		DEBUG_MODE = !DEBUG_MODE
-		print("DEBUG_MODE: ", DEBUG_MODE)
+		Log.info("DEBUG_MODE: ", DEBUG_MODE)

@@ -69,14 +69,6 @@ unique_name_in_owner = true
 rotation = -1.55509
 script = ExtResource("7_gupt8")
 
-[node name="Axe" parent="Inventory" instance=ExtResource("11_0uubr")]
-position = Vector2(-40.7279, 17.642)
-attack_enabled = false
-
-[node name="Bow" parent="Inventory" instance=ExtResource("4_ofbkf")]
-position = Vector2(0.984165, -1.01559)
-attack_enabled = false
-
 [node name="Sword" parent="Inventory" instance=ExtResource("11_o7kf6")]
 attack_enabled = false
 
@@ -85,6 +77,14 @@ position = Vector2(-0.926852, -58.9927)
 
 [node name="AttackBox" parent="Inventory/Sword" index="3"]
 position = Vector2(0.0887343, -58.0085)
+
+[node name="Axe" parent="Inventory" instance=ExtResource("11_0uubr")]
+position = Vector2(-40.7279, 17.642)
+attack_enabled = false
+
+[node name="Bow" parent="Inventory" instance=ExtResource("4_ofbkf")]
+position = Vector2(0.984165, -1.01559)
+attack_enabled = false
 
 [node name="BombDropper" parent="Inventory" instance=ExtResource("8_u5tt0")]
 position = Vector2(1.01559, 0.984167)
@@ -166,6 +166,7 @@ offset_bottom = 40.0
 layout_mode = 1
 offset_top = 372.0
 offset_bottom = 672.0
+joystick_mode = 1
 
 [node name="Virtual joystick right" parent="CanvasLayer/Control/Joysticks" instance=ExtResource("17_ykow5")]
 visible = false

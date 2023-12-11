@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="UpgradeInfo" load_steps=3 format=3 uid="uid://bcxj8hf4vd0m6"]
 
-[ext_resource type="Texture2D" uid="uid://bfeaa6anfj4mf" path="res://assets/sid_assets/lvlup_btn3.png" id="1_0xi5x"]
 [ext_resource type="Script" path="res://scenes/upgrades/upgrade_info.gd" id="1_jiugw"]
+[ext_resource type="Texture2D" uid="uid://cr0lkoklx0fkn" path="res://assets/sid_assets/scissors.png" id="1_ogm5b"]
 
 [resource]
 script = ExtResource("1_jiugw")
-name = "Axe"
+name = "Scissor"
 description = "1. Unlocks weapon,2.,3.,4.,5.,6."
-icon = ExtResource("1_0xi5x")
+icon = ExtResource("1_ogm5b")
 weapon_type = 4

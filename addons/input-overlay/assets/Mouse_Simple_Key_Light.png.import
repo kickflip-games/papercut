@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bt6g70f4e0wme"
-path="res://.godot/imported/weapon_ink_pot.png-dfc8bb47f4de94ed5f65189da2f2e8bc.ctex"
+uid="uid://xatbexiouyoq"
+path="res://.godot/imported/Mouse_Simple_Key_Light.png-f5754ff8304a3c8b3701010341124ec1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/kenney_scribble_dungeons/PNG/Items/weapon_ink_pot.png"
-dest_files=["res://.godot/imported/weapon_ink_pot.png-dfc8bb47f4de94ed5f65189da2f2e8bc.ctex"]
+source_file="res://addons/input-overlay/assets/Mouse_Simple_Key_Light.png"
+dest_files=["res://.godot/imported/Mouse_Simple_Key_Light.png-f5754ff8304a3c8b3701010341124ec1.ctex"]
 
 [params]
 

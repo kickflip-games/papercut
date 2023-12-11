@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://wjuvo5gqethv" path="res://scenes/units/player/player.tscn" id="3_tw26w"]
 [ext_resource type="PackedScene" uid="uid://cnd77vsekt02" path="res://scenes/units/enemy/enemy_spawner.tscn" id="4_n1pc5"]
 [ext_resource type="PackedScene" uid="uid://bn4p41kvbnxw6" path="res://scenes/units/enemy/enemy.tscn" id="5_7w8w8"]
-[ext_resource type="PackedScene" uid="uid://btq7dgkmmegoe" path="res://scenes/pickups/xp_pickup.tscn" id="5_ghsko"]
 [ext_resource type="Script" path="res://scenes/units/enemy/spawn_info.gd" id="6_o6jjo"]
 [ext_resource type="LabelSettings" uid="uid://di2inmld2sx5d" path="res://scenes/fonts/title_font.tres" id="7_twwe7"]
 [ext_resource type="PackedScene" uid="uid://brf2rg0tybjeg" path="res://scenes/debug_tools/debug_txt.tscn" id="8_6uwrs"]
@@ -15,18 +14,19 @@
 [ext_resource type="Script" path="res://scenes/game_flow/game_over_panel.gd" id="12_86xoj"]
 [ext_resource type="PackedScene" uid="uid://cko02oljhiby" path="res://scenes/game_flow/paused/paused.tscn" id="13_w46h1"]
 [ext_resource type="Script" path="res://scenes/game_flow/gameplay/Control2.gd" id="14_08cw6"]
+[ext_resource type="PackedScene" uid="uid://dqcgkdrx4yu5y" path="res://addons/input-overlay/overlay-widget/overlay-widget.tscn" id="15_xikcc"]
 
 [sub_resource type="Resource" id="Resource_6plnk"]
 script = ExtResource("6_o6jjo")
 time_start = 0
 time_end = 60
 enemy = ExtResource("5_7w8w8")
-enemy_num = 5
+enemy_num = 2
 enemy_spawn_delay = 1
 
 [sub_resource type="Resource" id="Resource_222b3"]
 script = ExtResource("6_o6jjo")
-time_start = 0
+time_start = 30
 time_end = 20000
 enemy = ExtResource("5_7w8w8")
 enemy_num = 15
@@ -73,9 +73,6 @@ region_rect = Rect2(-2537.24, -2280.98, 5048.12, 3481.33)
 
 [node name="Player" parent="." instance=ExtResource("3_tw26w")]
 position = Vector2(380, 154)
-
-[node name="XP_Pickup" parent="." instance=ExtResource("5_ghsko")]
-position = Vector2(381, 159)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("4_n1pc5")]
 spawns = Array[ExtResource("6_o6jjo")]([SubResource("Resource_6plnk"), SubResource("Resource_222b3"), SubResource("Resource_upml2")])
@@ -176,7 +173,7 @@ horizontal_alignment = 1
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
-text = "Press R to restart"
+text = "Click/Press R to restart"
 
 [node name="LevelUpUI" parent="GUI/Control" instance=ExtResource("12_7ui3t")]
 layout_mode = 0
@@ -212,5 +209,13 @@ offset_bottom = 89.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
+
+[node name="OverlayWidget" parent="GUI" instance=ExtResource("15_xikcc")]
+modulate = Color(1, 1, 1, 0.309804)
+offset_left = 961.0
+offset_top = 576.0
+offset_right = 1693.0
+offset_bottom = 824.0
+scale = Vector2(0.4, 0.4)
 
 [connection signal="timeout" from="GUI/Timer_Control/timer_1" to="GUI/Timer_Control" method="_on_timer_timeout"]

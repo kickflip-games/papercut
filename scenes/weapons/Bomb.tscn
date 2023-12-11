@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/weapons/bomb.gd" id="1_f0auy"]
 [ext_resource type="PackedScene" uid="uid://ckrxk10li5n0j" path="res://scenes/units/hit_boxes/attack_box.tscn" id="2_fj1mv"]
-[ext_resource type="Texture2D" uid="uid://bt6g70f4e0wme" path="res://assets/kenney_scribble_dungeons/PNG/Items/weapon_ink_pot.png" id="2_n0q6x"]
+[ext_resource type="Texture2D" uid="uid://bt6g70f4e0wme" path="res://assets/sid_assets/weapon_ink_pot.png" id="2_n0q6x"]
 [ext_resource type="Texture2D" uid="uid://cuamtd5wuba8d" path="res://assets/spotlight.png" id="3_dh7r0"]
 [ext_resource type="Texture2D" uid="uid://d3mjqpujgxpc0" path="res://assets/kenney_scribble_dungeons/PNG/arrow.png" id="3_en14y"]
 

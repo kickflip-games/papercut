@@ -1,8 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://nq8tp1apdyry"]
+[gd_scene load_steps=10 format=3 uid="uid://nq8tp1apdyry"]
 
 [ext_resource type="Script" path="res://scenes/upgrades/LevelUpUi.gd" id="1_mhpqb"]
 [ext_resource type="Theme" uid="uid://bxtdecgwlb77n" path="res://scenes/upgrades/theme_lvlup.tres" id="1_ua53q"]
 [ext_resource type="LabelSettings" uid="uid://di2inmld2sx5d" path="res://scenes/fonts/title_font.tres" id="2_flh0q"]
+[ext_resource type="Resource" uid="uid://bcxj8hf4vd0m6" path="res://scenes/upgrades/upgrade_cards/Axe.tres" id="3_1odda"]
+[ext_resource type="PackedScene" uid="uid://dbstyykq2hos4" path="res://scenes/upgrades/upgrade_button.tscn" id="4_7djdk"]
+[ext_resource type="Resource" uid="uid://bxvam6j0vq84m" path="res://scenes/upgrades/upgrade_cards/Bow.tres" id="4_qup1v"]
+[ext_resource type="Resource" uid="uid://ck41odoh6qmav" path="res://scenes/upgrades/upgrade_cards/InkPot.tres" id="5_berua"]
+[ext_resource type="Resource" uid="uid://b0w52j6bsn7ht" path="res://scenes/upgrades/upgrade_cards/Sword.tres" id="6_1bp2v"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2bbot"]
 
@@ -24,6 +29,7 @@ mouse_default_cursor_shape = 2
 theme = ExtResource("1_ua53q")
 theme_override_styles/panel = SubResource("StyleBoxTexture_2bbot")
 script = ExtResource("1_mhpqb")
+upgrade_options = Array[Resource("res://scenes/upgrades/upgrade_info.gd")]([ExtResource("3_1odda"), ExtResource("4_qup1v"), ExtResource("5_berua"), ExtResource("6_1bp2v")])
 
 [node name="labelLvlUp" type="Label" parent="."]
 unique_name_in_owner = true
@@ -51,4 +57,14 @@ offset_right = 316.0
 offset_bottom = -19.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_constants/separation = 10
 alignment = 1
+
+[node name="UpgradeButton" parent="UpgradesTable" instance=ExtResource("4_7djdk")]
+layout_mode = 2
+
+[node name="UpgradeButton2" parent="UpgradesTable" instance=ExtResource("4_7djdk")]
+layout_mode = 2
+
+[node name="UpgradeButton3" parent="UpgradesTable" instance=ExtResource("4_7djdk")]
+layout_mode = 2

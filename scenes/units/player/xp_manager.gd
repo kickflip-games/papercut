@@ -39,6 +39,7 @@ var xp:float = 0 :
 
 func _ready():
 	pickupBox.picked_up.connect(on_xp_pickedup)
+	call_deferred("lvl_up")
 
 
 func on_xp_pickedup(xp_pickup):
@@ -54,3 +55,8 @@ func lvl_up():
 	xp = 0
 	leveled_up.emit()
 
+
+func _input(event):
+	if event.is_action_pressed("LevelUp") && Global.DEBUG_MODE:
+		lvl_up()
+		

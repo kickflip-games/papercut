@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="UpgradeInfo" load_steps=3 format=3 uid="uid://bxvam6j0vq84m"]
 
-[ext_resource type="Texture2D" uid="uid://chhmrady5160l" path="res://assets/sid_assets/lvlup_btn1.png" id="1_c364b"]
+[ext_resource type="Texture2D" uid="uid://d0ug5y6lesr62" path="res://assets/sid_assets/Pencil.png" id="1_nb4i2"]
 [ext_resource type="Script" path="res://scenes/upgrades/upgrade_info.gd" id="1_svw46"]
 
 [resource]
 script = ExtResource("1_svw46")
-name = "Bow"
+name = "Pencil"
 description = "1. Unlocks weapon,2.,3.,4.,5.,6."
-icon = ExtResource("1_c364b")
+icon = ExtResource("1_nb4i2")
 weapon_type = 1

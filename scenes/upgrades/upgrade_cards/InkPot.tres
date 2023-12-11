@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="UpgradeInfo" load_steps=3 format=3 uid="uid://ck41odoh6qmav"]
 
-[ext_resource type="Texture2D" uid="uid://bt6g70f4e0wme" path="res://assets/kenney_scribble_dungeons/PNG/Items/weapon_ink_pot.png" id="1_7okcb"]
+[ext_resource type="Texture2D" uid="uid://bt6g70f4e0wme" path="res://assets/sid_assets/weapon_ink_pot.png" id="1_5mrcg"]
 [ext_resource type="Script" path="res://scenes/upgrades/upgrade_info.gd" id="1_y570p"]
 
 [resource]
 script = ExtResource("1_y570p")
 name = "Ink Pot"
 description = "1. Unlocks weapon,2.,3.,4.,5.,6."
-icon = ExtResource("1_7okcb")
+icon = ExtResource("1_5mrcg")
 weapon_type = 5

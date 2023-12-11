@@ -8,7 +8,7 @@ class_name EnemySpawner
 @onready var timer:Timer = get_node("%SpawnTimer")
 
 
-const MAX_ENEMY = 300
+const MAX_ENEMY = 100
 
 signal changetime(time)
 

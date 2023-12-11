@@ -13,7 +13,7 @@ class_name LevelUpUi
 
 @onready var upgrade_button:PackedScene = preload("res://scenes/upgrades/upgrade_button.tscn")
 
-var upgrade_options:Array[UpgradeInfo]
+@export var upgrade_options:Array[UpgradeInfo]
 var upgrade_info_path : String = "res://scenes/upgrades/upgrade_cards/"
 
 
@@ -59,14 +59,13 @@ func _show_ui():
 	# get new options
 	var random_options = _get_rand_option_idxes(3)
 	for i in range(max_options):
-		var upgrd:UpgradeInfo = upgrade_options[random_options[i]]
-		var btn:UpgradeButton = upgrade_button.instantiate()
-		btn.upgrade = upgrd
-		btn.pressed.connect(trigger_upgrade_purchased_signal)
-		table.add_child(btn)
-		Log.info("Adding %s as upgrade option"%upgrd.name)
+		_setup_btn(upgrade_options[random_options[i]])
 		
 	# play anim to show options
+	call_deferred("_play_anim")
+	
+
+func _play_anim():
 	var tween = self.create_tween()
 	tween.tween_property(
 		self,
@@ -76,6 +75,13 @@ func _show_ui():
 	self.visible = true
 	get_tree().paused = true
 
+func _setup_btn(upgrd:UpgradeInfo):
+	var btn:UpgradeButton = upgrade_button.instantiate()
+	Log.info("Adding UPGRADE[%s] to upgrade table"%upgrd.name)
+	btn.call_deferred("set_upgrade", upgrd)
+	btn.pressed.connect(trigger_upgrade_purchased_signal)
+	table.add_child(btn)
+
 
 
 func trigger_upgrade_purchased_signal():
@@ -83,21 +89,22 @@ func trigger_upgrade_purchased_signal():
 
 
 func load_upgrade_options() -> void:
-	var dir = DirAccess.open(upgrade_info_path)
-	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		
-		while file_name != "":
-			# Check if the file has the .tres extension
-			if file_name.get_extension() == "tres":
-				var resource_path:String = upgrade_info_path + file_name
-				var resource:UpgradeInfo = ResourceLoader.load(resource_path)
-				if resource != null:
-					upgrade_options.append(resource)
-				else:
-					print("Failed to load resource:", resource_path)
+#	var dir = DirAccess.open(upgrade_info_path)
+#	if dir:
+#		dir.list_dir_begin()
+#		var file_name = dir.get_next()
+#
+#		while file_name != "":
+#			# Check if the file has the .tres extension
+#			if file_name.get_extension() == "tres":
+#				var resource_path:String = upgrade_info_path + file_name
+#				var resource:UpgradeInfo = ResourceLoader.load(resource_path)
+#				if resource != null:
+#					upgrade_options.append(resource)
+#				else:
+#					print("Failed to load resource:", resource_path)
+#
+#			file_name = dir.get_next()
 
-			file_name = dir.get_next()
-
-	Log.debug("Loaded %d upgrde options" % len(upgrade_options))
+	Log.info("Loaded %d upgrde options" % len(upgrade_options))	
+	assert(len(upgrade_options)>0)

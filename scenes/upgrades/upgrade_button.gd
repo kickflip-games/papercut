@@ -4,15 +4,21 @@ class_name UpgradeButton
 
 var upgrade:UpgradeInfo
 @onready var inventory:Inventory = get_tree().get_first_node_in_group("Player").get_node("Inventory")
+@onready var label:Label = $Label
+@onready var icon:TextureRect = $IconContainer/Icon
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
+
+func set_upgrade(u:UpgradeInfo):
+	self.upgrade = u
 	self.pressed.connect(self._on_pressed)
-#	self.text = upgrade.name
-#	self.description = upgrade.description 
-# 	TODO: show level of upgrade item
+	self.icon.texture = u.icon
+	self.label.text = u.name
+	#	self.description = upgrade.description 
+	# 	TODO: show level of upgrade item
 	# self.level = current_item_level + 1  
-	self.texture_normal = upgrade.icon
+
+func _ready():
+	print("BUTTON READY")
 
 
 func _on_pressed():

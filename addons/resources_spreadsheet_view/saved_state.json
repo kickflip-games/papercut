@@ -7,11 +7,16 @@
     "res://scenes/upgrades/upgrade_cards/": {
       "resource_local_to_scene": true,
       "resource_name": true
+    },
+    "res://scenes/upgrades/upgrade_cards/upgrades_table_spreadsheet_import.tres": {
+      "resource_local_to_scene": true,
+      "resource_path": true
     }
   },
   "recent_paths": [
     "res://example/Items/items/",
-    "res://scenes/upgrades/upgrade_cards/"
+    "res://scenes/upgrades/upgrade_cards/",
+    "res://scenes/upgrades/upgrade_cards/upgrades_table_spreadsheet_import.tres"
   ],
   "table_functions": {
     "filter": [
