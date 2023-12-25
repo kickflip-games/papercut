@@ -17,11 +17,17 @@ var sprite
 
 var is_alive:bool = true
 
+var down_state:bool = true
+var right_state:bool = true
+
 func _ready():
 	health_manager.Die.connect(_on_death)
 	take_damage_box.take_damage.connect(_on_take_damage)
 	
 	sprite = $Sprite
+	
+	down_state = true
+	right_state = true
 
 
 func get_inputs():
@@ -40,16 +46,26 @@ func _physics_process(delta):
 #		_current_speed = walk_speed
 	velocity = get_inputs() * _current_speed
 	
-	if Input.is_action_pressed("ui_left") && Input.is_action_pressed("ui_down"):
+	if Input.is_action_pressed("ui_up"):
+		down_state = false
+	elif Input.is_action_pressed("ui_down"):
+		down_state = true
+		
+	if Input.is_action_pressed("ui_right"):
+		right_state = true
+	elif Input.is_action_just_pressed("ui_left"):
+		right_state = false
+	
+	if (down_state == true) && (right_state == false):
 		sprite.texture = load("res://assets/bla_assets/protagonist_downleft.png")
 		
-	if Input.is_action_pressed("ui_right") && Input.is_action_pressed("ui_down"):
+	elif (down_state == true) && (right_state == true):
 		sprite.texture = load("res://assets/bla_assets/protagonist.png")
 		
-	if Input.is_action_pressed("ui_left") && Input.is_action_pressed("ui_up"):
+	elif (down_state == false) && (right_state == false):
 		sprite.texture = load("res://assets/bla_assets/protagonist-upleft.png")
 		
-	if Input.is_action_pressed("ui_right") && Input.is_action_pressed("ui_up"):
+	elif (down_state == false) && (right_state == true):
 		sprite.texture = load("res://assets/bla_assets/protagonist-upright.png")
 		
 	if is_alive:
