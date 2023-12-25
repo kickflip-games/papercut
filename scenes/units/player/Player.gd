@@ -7,6 +7,8 @@ var speed:float = 150
 var walk_speed:float = 100
 var auto_aim:bool = true
 
+var sprite
+
 @onready var health_manager:Health = $Health
 @onready var detection_area:DetectionArea = $DetectionArea
 @onready var take_damage_box:TakeDamageBox = %TakeDamageBox
@@ -18,6 +20,8 @@ var is_alive:bool = true
 func _ready():
 	health_manager.Die.connect(_on_death)
 	take_damage_box.take_damage.connect(_on_take_damage)
+	
+	sprite = $Sprite
 
 
 func get_inputs():
@@ -26,6 +30,7 @@ func get_inputs():
 	
 	if input_mouse.length() > 0:
 		return input_mouse
+		
 	return input_keyboard
 
 
@@ -34,6 +39,13 @@ func _physics_process(delta):
 #	if Input.is_action_pressed("shoot"):
 #		_current_speed = walk_speed
 	velocity = get_inputs() * _current_speed
+	
+	if Input.is_action_pressed("ui_left"):
+		sprite.texture = load("res://assets/bla_assets/protagonist_left.png")
+		
+	if Input.is_action_pressed("ui_right"):
+		sprite.texture = load("res://assets/bla_assets/protagonist.png")
+		
 	if is_alive:
 		move_and_slide()
 
