@@ -40,11 +40,17 @@ func _physics_process(delta):
 #		_current_speed = walk_speed
 	velocity = get_inputs() * _current_speed
 	
-	if Input.is_action_pressed("ui_left"):
-		sprite.texture = load("res://assets/bla_assets/protagonist_left.png")
+	if Input.is_action_pressed("ui_left") && Input.is_action_pressed("ui_down"):
+		sprite.texture = load("res://assets/bla_assets/protagonist_downleft.png")
 		
-	if Input.is_action_pressed("ui_right"):
+	if Input.is_action_pressed("ui_right") && Input.is_action_pressed("ui_down"):
 		sprite.texture = load("res://assets/bla_assets/protagonist.png")
+		
+	if Input.is_action_pressed("ui_left") && Input.is_action_pressed("ui_up"):
+		sprite.texture = load("res://assets/bla_assets/protagonist-upleft.png")
+		
+	if Input.is_action_pressed("ui_right") && Input.is_action_pressed("ui_up"):
+		sprite.texture = load("res://assets/bla_assets/protagonist-upright.png")
 		
 	if is_alive:
 		move_and_slide()
