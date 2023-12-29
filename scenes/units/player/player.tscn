@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scenes/units/player/xp_magnet_box.gd" id="4_j628w"]
 [ext_resource type="PackedScene" uid="uid://drqeygsg8j7nn" path="res://scenes/weapons/Bow.tscn" id="4_ofbkf"]
 [ext_resource type="Texture2D" uid="uid://cuamtd5wuba8d" path="res://assets/spotlight.png" id="5_hu868"]
-[ext_resource type="Texture2D" uid="uid://oiau4moeutbb" path="res://assets/sid_assets/Player.png" id="6_t7bgs"]
+[ext_resource type="Texture2D" uid="uid://ba2gv4qsfkxa" path="res://assets/bla_assets/protagonist.png" id="6_nrlwn"]
 [ext_resource type="PackedScene" uid="uid://boo7clbigp2xl" path="res://scenes/units/hit_boxes/take_damage_box.tscn" id="7_1bndr"]
 [ext_resource type="Script" path="res://scenes/units/player/HealthBar.gd" id="7_4x2fm"]
 [ext_resource type="Texture2D" uid="uid://d1cwqsd4qjkl7" path="res://assets/square.png" id="7_a5me4"]
@@ -61,8 +61,9 @@ debug_color = Color(0.623529, 0.364706, 0.972549, 0.145098)
 [node name="Sprite" type="Sprite2D" parent="."]
 z_index = 1
 position = Vector2(1.00001, 2)
+rotation = -1.5708
 scale = Vector2(0.817038, 0.817038)
-texture = ExtResource("6_t7bgs")
+texture = ExtResource("6_nrlwn")
 
 [node name="Inventory" type="Node2D" parent="."]
 unique_name_in_owner = true

@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://bn4p41kvbnxw6"]
 
 [ext_resource type="Script" path="res://scenes/units/enemy/enemy.gd" id="1_7l8ff"]
-[ext_resource type="Texture2D" uid="uid://d25eauer63smc" path="res://assets/sid_assets/Enemies.png" id="2_ljft2"]
+[ext_resource type="Texture2D" uid="uid://cbdchhfj7x4ht" path="res://assets/bla_assets/enemy.png" id="2_lkx1o"]
 [ext_resource type="Texture2D" uid="uid://dsxwipmhlpee4" path="res://assets/kenney_scribble_dungeons/PNG/Characters/green_hand.png" id="3_1xnif"]
 [ext_resource type="Script" path="res://scenes/units/enemy/EnemySpriteController.gd" id="3_yyeqe"]
 [ext_resource type="PackedScene" uid="uid://boo7clbigp2xl" path="res://scenes/units/hit_boxes/take_damage_box.tscn" id="4_vv6f4"]
@@ -22,7 +22,7 @@ script = ExtResource("1_7l8ff")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.585937, 0.585937)
-texture = ExtResource("2_ljft2")
+texture = ExtResource("2_lkx1o")
 script = ExtResource("3_yyeqe")
 
 [node name="FlashTimer" type="Timer" parent="Sprite2D"]
