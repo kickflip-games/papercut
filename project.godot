@@ -23,7 +23,7 @@ resources_spreadsheet_view/context_menu_on_leftclick=false
 config/name="papercut"
 config/description="[Add your description here!]"
 run/main_scene="res://scenes/game_flow/gameplay/game.tscn"
-config/features=PackedStringArray("4.1", "Mobile")
+config/features=PackedStringArray("4.2", "Mobile")
 run/max_fps=1000
 config/icon="res://assets/icon.svg"
 
@@ -55,7 +55,7 @@ movie_writer/movie_file="/Users/avaj0001/Documents/personal/godot_projects/movie
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/logger/plugin.cfg", "res://addons/resources_spreadsheet_view/plugin.cfg", "res://addons/trail_2d/plugin.cfg")
+enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/gaea/plugin.cfg", "res://addons/logger/plugin.cfg", "res://addons/resources_spreadsheet_view/plugin.cfg", "res://addons/trail_2d/plugin.cfg")
 
 [input]
 
