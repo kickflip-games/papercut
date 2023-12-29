@@ -20,6 +20,7 @@ enum TakeDamageType {
 enum NaviationType  {
 	BOID,
 	LINE,
+	AGENT
 }
 
 
