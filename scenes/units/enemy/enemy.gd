@@ -72,13 +72,15 @@ func _physics_process(delta):
 	var nav_data = navigation.get_target_velocity(velocity, speed)
 	
 	if NavType == Constants.NaviationType.AGENT:
-		var _dir = global_position.direction_to(nav_data["target"]).normalized()
+		var _dir = (nav_data["target"] - global_position).normalized()
 		nav_data["velocity"]  = _dir * speed
+		velocity = velocity.lerp(_dir*speed, 4 * delta)
+	else:
+		velocity = nav_data["velocity"] 
 	
-#	look_at(nav_data['target'])
-	var steering = (velocity - nav_data["velocity"] + knockback) * delta * 4
-	velocity += steering
 	
+	
+	velocity += knockback
 	
 	
 	#if global_position.distance_to(Player.global_position) < attack_distance:
