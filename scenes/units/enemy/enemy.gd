@@ -58,20 +58,35 @@ func _hide_sprite():
 func _show_sprite():
 	sprite.visible = true
 
+
+func _draw():
+	draw_line(
+		global_position,
+		global_position + velocity.normalized() * 20,
+		Color.GREEN,
+	)
+
+
+
 func _physics_process(delta):
 	var nav_data = navigation.get_target_velocity(velocity, speed)
 	
 	if NavType == Constants.NaviationType.AGENT:
-		var _dir = to_local(nav_data["target"]).normalized()
+		var _dir = global_position.direction_to(nav_data["target"]).normalized()
 		nav_data["velocity"]  = _dir * speed
 	
 #	look_at(nav_data['target'])
-	velocity = nav_data["velocity"] + knockback
-	if global_position.distance_to(Player.global_position) < attack_distance:
-		velocity = Vector2.ZERO
+	var steering = (velocity - nav_data["velocity"] + knockback) * delta * 4
+	velocity += steering
+	
+	
+	
+	#if global_position.distance_to(Player.global_position) < attack_distance:
+		#velocity = Vector2.ZERO
 	move_and_slide()
 	if knockback != Vector2.ZERO:
 		knockback = lerp(knockback, Vector2.ZERO, 0.1)
+		
 
 
 func _on_death():

@@ -31,7 +31,7 @@ func _on_timer_timeout():
 func get_target_velocity(current_v:Vector2, max_speed:float):
 	var target = get_next_path_position()
 	return Dictionary({
-		'velocity': target.normalized()*max_speed,
+		'velocity': Vector2.ZERO,
 		'target':target
 	})
 	
