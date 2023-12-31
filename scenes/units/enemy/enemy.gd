@@ -7,12 +7,14 @@ class_name Enemy
 @export var health:float = 2
 @export var attack_distance:float = 30
 @export var knockback_recovery = 3.5 # sec
+
 var knockback:Vector2 = Vector2.ZERO
 
 
 
 @export var experience = 1
 @export var enemy_damage = 1
+@export var NavType:Constants.NaviationType
 
 @onready var speed:float = randfn(speed_mean, speed_var)
 @onready var health_manager:Health = $Health
@@ -56,15 +58,37 @@ func _hide_sprite():
 func _show_sprite():
 	sprite.visible = true
 
+
+func _draw():
+	draw_line(
+		global_position,
+		global_position + velocity.normalized() * 20,
+		Color.GREEN,
+	)
+
+
+
 func _physics_process(delta):
 	var nav_data = navigation.get_target_velocity(velocity, speed)
-#	look_at(nav_data['target'])
-	velocity = nav_data["velocity"] + knockback
-	if global_position.distance_to(nav_data['target']) < attack_distance:
-		velocity = Vector2.ZERO
+	
+	if NavType == Constants.NaviationType.AGENT:
+		var _dir = (nav_data["target"] - global_position).normalized()
+		nav_data["velocity"]  = _dir * speed
+		velocity = velocity.lerp(_dir*speed, 4 * delta)
+	else:
+		velocity = nav_data["velocity"] 
+	
+	
+	
+	velocity += knockback
+	
+	
+	#if global_position.distance_to(Player.global_position) < attack_distance:
+		#velocity = Vector2.ZERO
 	move_and_slide()
 	if knockback != Vector2.ZERO:
 		knockback = lerp(knockback, Vector2.ZERO, 0.1)
+		
 
 
 func _on_death():

@@ -1,8 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://7441le0sa3s"]
+[gd_scene load_steps=21 format=3 uid="uid://7441le0sa3s"]
 
 [ext_resource type="Script" path="res://scenes/game_flow/gameplay/game_controller.gd" id="1_7w8pk"]
-[ext_resource type="Texture2D" uid="uid://dap5jtmoyn26d" path="res://assets/kenney_scribble_dungeons/PNG/tiles.png" id="2_mtxj0"]
-[ext_resource type="Texture2D" uid="uid://dp0efjyrhf1ip" path="res://assets/sid_assets/tile_green.png" id="2_wdh14"]
+[ext_resource type="PackedScene" uid="uid://ytmvtirjv3y2" path="res://scenes/environment/proc_gen_map.tscn" id="2_xxcua"]
 [ext_resource type="PackedScene" uid="uid://wjuvo5gqethv" path="res://scenes/units/player/player.tscn" id="3_tw26w"]
 [ext_resource type="PackedScene" uid="uid://cnd77vsekt02" path="res://scenes/units/enemy/enemy_spawner.tscn" id="4_n1pc5"]
 [ext_resource type="PackedScene" uid="uid://bn4p41kvbnxw6" path="res://scenes/units/enemy/enemy.tscn" id="5_7w8w8"]
@@ -54,25 +53,9 @@ font_size = 30
 [node name="game" type="Node2D"]
 script = ExtResource("1_7w8pk")
 
-[node name="Environment" type="Node2D" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="Environment"]
-position = Vector2(649, 8)
-scale = Vector2(421.868, 313.577)
-texture = ExtResource("2_wdh14")
-
-[node name="Background" type="Sprite2D" parent="Environment"]
-self_modulate = Color(1, 1, 1, 0.184314)
-texture_filter = 1
-texture_repeat = 2
-position = Vector2(380, 46.5004)
-scale = Vector2(2.74445, 2.94829)
-texture = ExtResource("2_mtxj0")
-region_enabled = true
-region_rect = Rect2(-2537.24, -2280.98, 5048.12, 3481.33)
+[node name="ProcGenMap" parent="." instance=ExtResource("2_xxcua")]
 
 [node name="Player" parent="." instance=ExtResource("3_tw26w")]
-position = Vector2(380, 154)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("4_n1pc5")]
 spawns = Array[ExtResource("6_o6jjo")]([SubResource("Resource_6plnk"), SubResource("Resource_222b3"), SubResource("Resource_upml2")])

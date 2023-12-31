@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bn4p41kvbnxw6"]
+[gd_scene load_steps=14 format=3 uid="uid://bn4p41kvbnxw6"]
 
 [ext_resource type="Script" path="res://scenes/units/enemy/enemy.gd" id="1_7l8ff"]
 [ext_resource type="Texture2D" uid="uid://cbdchhfj7x4ht" path="res://assets/bla_assets/enemy.png" id="2_lkx1o"]
@@ -7,7 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://boo7clbigp2xl" path="res://scenes/units/hit_boxes/take_damage_box.tscn" id="4_vv6f4"]
 [ext_resource type="PackedScene" uid="uid://ckrxk10li5n0j" path="res://scenes/units/hit_boxes/attack_box.tscn" id="5_jk6at"]
 [ext_resource type="PackedScene" uid="uid://c8r5mypnga5lt" path="res://scenes/units/health/health.tscn" id="6_0xygx"]
-[ext_resource type="PackedScene" uid="uid://cwsj4k5vxkqth" path="res://scenes/units/enemy/navigation.tscn" id="7_3oge1"]
+[ext_resource type="Script" path="res://scenes/units/enemy/navigation.gd" id="8_co0il"]
+[ext_resource type="PackedScene" uid="uid://cwsj4k5vxkqth" path="res://scenes/units/enemy/navigation_boids.tscn" id="9_0de4l"]
+[ext_resource type="Script" path="res://scenes/units/enemy/navigation_agent.gd" id="10_uymh3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1ge0n"]
+height = 72.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i81hp"]
 radius = 25.02
@@ -16,9 +21,15 @@ radius = 25.02
 radius = 19.0
 
 [node name="enemy" type="CharacterBody2D" groups=["enemy"]]
-collision_layer = 8
+collision_layer = 9
 collision_mask = 7
+motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_7l8ff")
+NavType = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_1ge0n")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.585937, 0.585937)
@@ -53,10 +64,23 @@ shape = SubResource("CircleShape2D_wmghk")
 
 [node name="Health" parent="." instance=ExtResource("6_0xygx")]
 
-[node name="Navigation" parent="." instance=ExtResource("7_3oge1")]
+[node name="Navigation" type="Node2D" parent="."]
+script = ExtResource("8_co0il")
+navType = 2
+
+[node name="NavigationBoids" parent="Navigation" instance=ExtResource("9_0de4l")]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Navigation"]
+debug_enabled = true
+debug_path_custom_color = Color(1, 0, 1, 1)
+script = ExtResource("10_uymh3")
+
+[node name="Timer" type="Timer" parent="Navigation/NavigationAgent2D"]
+wait_time = 0.5
+autostart = true
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [editable path="TakeDamageBox"]
 [editable path="AttackBox"]
-[editable path="Navigation"]
+[editable path="Navigation/NavigationBoids"]
